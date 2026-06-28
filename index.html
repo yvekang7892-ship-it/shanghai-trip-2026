@@ -1,0 +1,1908 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>☀️ 2026 짧은 유부 여름방학 | 상하이 7.24–7.26</title>
+<style>
+  :root {
+    --rose: #e8637a;
+    --blush: #f5a7b5;
+    --gold: #c9a84c;
+    --cream: #fdf8f3;
+    --dark: #2c2c2c;
+    --gray: #888;
+    --lightgray: #f0ece8;
+    --card-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; background: var(--cream); color: var(--dark); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; height: 320px; overflow: hidden;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    display: flex; align-items: center; justify-content: center; flex-direction: column;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1537944434965-cf4679d1a598?w=1200&q=80&auto=format&fit=crop');
+    background-size: cover; background-position: center;
+    opacity: 0.55;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.55) 100%);
+  }
+  .hero-content { position: relative; text-align: center; color: #fff; padding: 0 20px; }
+  .hero-emoji { font-size: 2.5rem; margin-bottom: 8px; }
+  .hero-title { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.5px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+  .hero-sub { font-size: 1rem; margin-top: 8px; opacity: 0.9; letter-spacing: 1px; }
+  .hero-tags { display: flex; gap: 8px; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
+  .hero-tag { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.35);
+               color: #fff; border-radius: 20px; padding: 4px 14px; font-size: 0.78rem; backdrop-filter: blur(4px); }
+
+  /* ── TABS ── */
+  .tabs-wrap { background: #fff; border-bottom: 2px solid var(--lightgray); position: sticky; top: 0; z-index: 100; }
+  .tabs { display: flex; overflow-x: auto; padding: 0 16px; gap: 4px; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { padding: 14px 16px; cursor: pointer; font-size: 0.85rem; font-weight: 600; color: var(--gray);
+          border-bottom: 3px solid transparent; white-space: nowrap; transition: all 0.2s;
+          background: none; border-top: none; border-left: none; border-right: none;
+          font-family: inherit; outline: none; -webkit-tap-highlight-color: transparent;
+          touch-action: manipulation; user-select: none; }
+  .tab.active { color: var(--rose); border-bottom-color: var(--rose); }
+  .tab:hover { color: var(--rose); }
+  .tab:active { opacity: 0.7; }
+
+  /* ── CONTENT ── */
+  .section { display: none; padding: 24px 20px 60px; max-width: 780px; margin: 0 auto; }
+  .section.active { display: block; }
+
+  /* ── DAY HEADER ── */
+  .day-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+  .day-badge { background: var(--rose); color: #fff; border-radius: 12px; padding: 6px 16px; font-size: 0.8rem; font-weight: 700; }
+  .day-title { font-size: 1.3rem; font-weight: 700; }
+  .day-desc { font-size: 0.85rem; color: var(--gray); margin-top: 2px; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; }
+  .timeline::before { content: ''; position: absolute; left: 26px; top: 0; bottom: 0; width: 2px; background: var(--lightgray); }
+
+  .act-card {
+    display: flex; gap: 16px; margin-bottom: 20px; position: relative;
+    animation: fadeIn 0.3s ease;
+  }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+  .act-time-col { display: flex; flex-direction: column; align-items: center; width: 54px; flex-shrink: 0; }
+  .act-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--rose); border: 3px solid #fff;
+              box-shadow: 0 0 0 2px var(--blush); z-index: 1; margin-top: 4px; flex-shrink: 0; }
+  .act-time { font-size: 0.75rem; color: var(--gray); font-weight: 600; margin-top: 4px; text-align: center; }
+
+  .act-body { background: #fff; border-radius: 16px; padding: 16px; flex: 1; box-shadow: var(--card-shadow);
+               border: 1px solid rgba(0,0,0,0.04); }
+  .act-body:hover { box-shadow: 0 6px 24px rgba(232,99,122,0.12); }
+
+  .act-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .act-icon-title { display: flex; align-items: center; gap: 8px; }
+  .act-icon { font-size: 1.3rem; }
+  .act-title { font-size: 1rem; font-weight: 700; }
+  .act-label { font-size: 0.7rem; background: var(--blush); color: var(--rose); border-radius: 6px;
+                padding: 2px 8px; font-weight: 600; margin-left: 6px; }
+  .act-desc { font-size: 0.84rem; color: #555; margin-top: 6px; line-height: 1.5; }
+  .act-tip { font-size: 0.78rem; color: var(--gold); margin-top: 6px; display: flex; align-items: center; gap: 4px; }
+
+  .act-img { width: 100%; height: 160px; border-radius: 10px; object-fit: cover; margin-top: 10px;
+              background: var(--lightgray); display: block; }
+
+  .act-actions { display: flex; gap: 6px; margin-top: 10px; }
+  .btn-edit, .btn-del { border: none; border-radius: 8px; padding: 5px 12px; font-size: 0.75rem;
+                         cursor: pointer; font-weight: 600; transition: all 0.2s; }
+  .btn-edit { background: var(--lightgray); color: var(--dark); }
+  .btn-edit:hover { background: var(--rose); color: #fff; }
+  .btn-del { background: #fff; color: #ccc; border: 1px solid #eee; }
+  .btn-del:hover { background: #ffe8ec; color: var(--rose); border-color: var(--rose); }
+  .btn-map { display: inline-flex; align-items: center; gap: 3px; background: #e8f4fd; color: #2980b9;
+              border: 1px solid #b8d9f0; border-radius: 8px; padding: 5px 10px; font-size: 0.75rem;
+              font-weight: 600; text-decoration: none; transition: all 0.2s; }
+  .btn-map:hover { background: #2980b9; color: #fff; }
+
+  .add-act-btn { display: flex; align-items: center; justify-content: center; gap: 8px;
+                  width: 100%; padding: 14px; border: 2px dashed var(--blush); border-radius: 14px;
+                  background: none; cursor: pointer; color: var(--rose); font-size: 0.88rem; font-weight: 600;
+                  margin-top: 8px; transition: all 0.2s; }
+  .add-act-btn:hover { background: #fff5f7; }
+
+  /* ── PHOTO GRID ── */
+  .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 16px 0; }
+  .photo-grid img { width: 100%; height: 130px; object-fit: cover; border-radius: 12px; }
+  .photo-grid img:first-child { grid-column: 1 / -1; height: 200px; }
+
+  /* ── INFO CARDS (숙소/항공) ── */
+  .info-section-title { font-size: 1.2rem; font-weight: 700; margin: 24px 0 14px;
+                          display: flex; align-items: center; gap: 8px; }
+  .info-card { background: #fff; border-radius: 16px; padding: 20px; margin-bottom: 16px; box-shadow: var(--card-shadow); }
+  .info-card-title { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+  .info-card-sub { font-size: 0.8rem; color: var(--gray); margin-bottom: 12px; }
+
+  .hotel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .hotel-card { background: #fff; border-radius: 14px; overflow: hidden; box-shadow: var(--card-shadow);
+                  border: 2px solid transparent; cursor: pointer; transition: all 0.2s; }
+  .hotel-card:hover, .hotel-card.picked { border-color: var(--rose); }
+  .hotel-card.picked .hotel-label { background: var(--rose); color: #fff; }
+  .hotel-img { width: 100%; height: 110px; object-fit: cover; background: var(--lightgray); }
+  .hotel-body { padding: 12px; }
+  .hotel-name { font-size: 0.9rem; font-weight: 700; }
+  .hotel-area { font-size: 0.75rem; color: var(--gray); margin-top: 2px; }
+  .hotel-label { display: inline-block; font-size: 0.7rem; border-radius: 6px;
+                   padding: 2px 8px; margin-top: 6px; background: var(--lightgray); color: var(--rose); font-weight: 600; }
+  .hotel-pros { font-size: 0.78rem; color: #555; margin-top: 8px; line-height: 1.5; }
+
+  .airline-table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+  .airline-table th { background: var(--lightgray); padding: 10px 12px; text-align: left; font-weight: 700; }
+  .airline-table td { padding: 10px 12px; border-bottom: 1px solid #f0ece8; }
+  .airline-table tr:last-child td { border-bottom: none; }
+  .badge-safe { display: inline-block; background: #e6f7ee; color: #27ae60; border-radius: 6px;
+                 padding: 2px 8px; font-size: 0.72rem; font-weight: 600; }
+  .badge-cheap { display: inline-block; background: #fff3cd; color: #c49a00; border-radius: 6px;
+                  padding: 2px 8px; font-size: 0.72rem; font-weight: 600; }
+
+  .tip-box { background: linear-gradient(135deg, #fff5f7 0%, #fff9f0 100%); border-left: 4px solid var(--rose);
+               border-radius: 0 12px 12px 0; padding: 14px 16px; margin-top: 16px; font-size: 0.83rem; line-height: 1.6; }
+  .tip-box strong { color: var(--rose); }
+
+  /* ── TRENDING ── */
+  .trend-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .trend-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: var(--card-shadow); }
+  .trend-img-wrap { position: relative; }
+  .trend-img { width: 100%; height: 140px; object-fit: cover; background: var(--lightgray); display:block; }
+  .trend-img-div { width:100%; height:140px; display:flex; align-items:center; justify-content:center; font-size:3rem; }
+  .trend-rank { position: absolute; top: 10px; left: 10px; background: var(--rose); color: #fff;
+                 width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center;
+                 justify-content: center; font-size: 0.78rem; font-weight: 700; }
+  .trend-body { padding: 12px; }
+  .trend-name { font-size: 0.9rem; font-weight: 700; }
+  .trend-desc { font-size: 0.77rem; color: var(--gray); margin-top: 4px; line-height: 1.4; }
+  .trend-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+  .trend-tag { font-size: 0.7rem; background: var(--lightgray); color: var(--gray);
+                border-radius: 6px; padding: 2px 7px; }
+
+  /* ── MODAL ── */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 1000;
+                    align-items: center; justify-content: center; padding: 20px; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: #fff; border-radius: 20px; padding: 24px; width: 100%; max-width: 420px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
+  .modal-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; }
+  .modal label { font-size: 0.82rem; color: var(--gray); font-weight: 600; display: block; margin-bottom: 4px; margin-top: 12px; }
+  .modal input, .modal textarea { width: 100%; border: 1.5px solid #e0dbd5; border-radius: 10px;
+                                   padding: 10px 12px; font-size: 0.88rem; font-family: inherit;
+                                   outline: none; transition: border-color 0.2s; }
+  .modal input:focus, .modal textarea:focus { border-color: var(--rose); }
+  .modal textarea { height: 80px; resize: vertical; }
+  .modal-btns { display: flex; gap: 10px; margin-top: 16px; }
+  .btn-save { flex: 1; background: var(--rose); color: #fff; border: none; border-radius: 10px;
+               padding: 12px; font-size: 0.9rem; font-weight: 700; cursor: pointer; }
+  .btn-cancel { background: var(--lightgray); color: var(--dark); border: none; border-radius: 10px;
+                 padding: 12px 18px; font-size: 0.9rem; font-weight: 600; cursor: pointer; }
+
+  /* ── ADD MODAL ── */
+  #add-modal-overlay .modal-title { color: var(--rose); }
+
+  /* ── PHRASE CARDS ── */
+  .phrase-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 8px; }
+  .phrase-card { background: #fff; border-radius: 14px; padding: 14px; box-shadow: var(--card-shadow);
+                  border: 1.5px solid transparent; cursor: default; transition: all 0.2s; }
+  .phrase-card:hover { border-color: var(--blush); transform: translateY(-2px); }
+  .phrase-cn { font-size: 1.4rem; font-weight: 700; color: var(--dark); display: flex; align-items: center; justify-content: space-between; }
+  .phrase-pinyin { font-size: 0.8rem; color: var(--rose); font-style: italic; margin-top: 2px; }
+  .phrase-kr { font-size: 0.82rem; color: var(--gray); margin-top: 4px; font-weight: 600; }
+  .btn-speak { background: none; border: none; cursor: pointer; font-size: 1rem; padding: 2px 4px;
+                border-radius: 6px; transition: all 0.15s; }
+  .btn-speak:hover { background: var(--lightgray); }
+
+  /* ── CURRENCY ── */
+  .currency-box { background: #fff; border-radius: 20px; padding: 28px; box-shadow: var(--card-shadow); }
+  .curr-rate-display { text-align: center; background: linear-gradient(135deg,#e8637a,#f5a7b5);
+                         border-radius: 14px; padding: 16px; color: #fff; margin-bottom: 24px; }
+  .curr-rate-label { font-size: 0.82rem; opacity: 0.85; }
+  .curr-rate-num { font-size: 2rem; font-weight: 800; margin-top: 4px; }
+  .curr-rate-sub { font-size: 0.75rem; opacity: 0.8; margin-top: 2px; }
+  .curr-row { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; }
+  .curr-input-wrap { flex: 1; position: relative; }
+  .curr-input-wrap label { font-size: 0.78rem; color: var(--gray); font-weight: 600; display: block; margin-bottom: 6px; }
+  .curr-input { width: 100%; border: 2px solid var(--lightgray); border-radius: 12px; padding: 14px 16px;
+                  font-size: 1.2rem; font-weight: 700; outline: none; transition: border-color 0.2s; }
+  .curr-input:focus { border-color: var(--rose); }
+  .curr-arrow { font-size: 1.5rem; color: var(--rose); flex-shrink: 0; margin-top: 20px; }
+  .curr-result { background: var(--cream); border-radius: 12px; padding: 16px; text-align: center; margin-top: 4px; }
+  .curr-result-num { font-size: 2rem; font-weight: 800; color: var(--rose); }
+  .curr-result-label { font-size: 0.8rem; color: var(--gray); margin-top: 4px; }
+  .curr-presets { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .curr-preset { background: var(--lightgray); border: none; border-radius: 20px; padding: 8px 16px;
+                   font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .curr-preset:hover { background: var(--rose); color: #fff; }
+  .curr-table { width: 100%; margin-top: 20px; border-collapse: collapse; font-size: 0.85rem; }
+  .curr-table th { background: var(--lightgray); padding: 10px; text-align: center; font-weight: 700; }
+  .curr-table td { padding: 10px; border-bottom: 1px solid #f0ece8; text-align: center; }
+  .curr-update { font-size: 0.72rem; color: var(--gray); text-align: center; margin-top: 12px; }
+
+  /* ── BUDGET ── */
+  .budget-hero { background: linear-gradient(135deg,#c9a84c,#f0d080); border-radius:16px; padding:20px; color:#fff; margin-bottom:20px; }
+  .budget-hero-title { font-size:1.5rem; font-weight:800; margin-bottom:10px; }
+  .budget-summary { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .budget-stat { background:rgba(255,255,255,0.25); border-radius:12px; padding:12px; text-align:center; }
+  .budget-stat-num { font-size:1.2rem; font-weight:800; }
+  .budget-stat-label { font-size:0.72rem; opacity:0.85; margin-top:2px; }
+  .budget-progress-wrap { margin-top:14px; }
+  .budget-progress-bg { background:rgba(255,255,255,0.3); border-radius:20px; height:10px; overflow:hidden; }
+  .budget-progress-bar { height:100%; border-radius:20px; background:#fff; transition:width 0.5s ease; }
+  .budget-progress-label { display:flex; justify-content:space-between; font-size:0.75rem; margin-top:5px; opacity:0.9; }
+
+  .budget-set-row { display:flex; gap:10px; align-items:flex-end; margin-bottom:20px; }
+  .budget-set-row label { font-size:0.78rem; color:var(--gray); font-weight:600; display:block; margin-bottom:5px; }
+  .budget-set-row input { flex:1; border:2px solid var(--lightgray); border-radius:10px; padding:10px 12px;
+                            font-size:0.95rem; font-weight:600; outline:none; }
+  .budget-set-row input:focus { border-color:var(--gold); }
+  .btn-set-budget { background:var(--gold); color:#fff; border:none; border-radius:10px; padding:10px 18px;
+                     font-size:0.85rem; font-weight:700; cursor:pointer; white-space:nowrap; }
+
+  .expense-form { background:#fff; border-radius:16px; padding:18px; box-shadow:var(--card-shadow); margin-bottom:16px; }
+  .expense-form-title { font-size:0.95rem; font-weight:700; margin-bottom:14px; color:var(--dark); }
+  .expense-grid { display:grid; grid-template-columns:80px 1fr 1fr; gap:8px; margin-bottom:8px; }
+  .expense-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px; }
+  .expense-form label { font-size:0.75rem; color:var(--gray); font-weight:600; display:block; margin-bottom:4px; }
+  .expense-form input, .expense-form select {
+    width:100%; border:1.5px solid var(--lightgray); border-radius:8px; padding:9px 10px;
+    font-size:0.85rem; outline:none; font-family:inherit; background:#fff; }
+  .expense-form input:focus, .expense-form select:focus { border-color:var(--rose); }
+  .btn-add-expense { width:100%; background:var(--rose); color:#fff; border:none; border-radius:10px;
+                      padding:11px; font-size:0.88rem; font-weight:700; cursor:pointer; }
+
+  .expense-list { background:#fff; border-radius:16px; box-shadow:var(--card-shadow); overflow:hidden; margin-bottom:16px; }
+  .expense-list-header { display:grid; grid-template-columns:55px 70px 1fr 75px 75px 36px;
+                           background:var(--lightgray); padding:10px 14px; font-size:0.72rem; font-weight:700; color:var(--gray); gap:6px; }
+  .expense-row { display:grid; grid-template-columns:55px 70px 1fr 75px 75px 36px;
+                   padding:10px 14px; font-size:0.8rem; border-bottom:1px solid #f5f0eb; gap:6px; align-items:center; }
+  .expense-row:last-child { border-bottom:none; }
+  .expense-row:hover { background:#fdf8f3; }
+  .expense-cat-badge { display:inline-block; border-radius:6px; padding:2px 7px; font-size:0.7rem; font-weight:600; }
+  .btn-del-expense { background:none; border:none; cursor:pointer; color:#ccc; font-size:0.9rem; padding:2px 4px; border-radius:4px; }
+  .btn-del-expense:hover { color:var(--rose); background:#ffe8ec; }
+  .expense-empty { padding:30px; text-align:center; color:var(--gray); font-size:0.85rem; }
+
+  .cat-summary { background:#fff; border-radius:16px; padding:18px; box-shadow:var(--card-shadow); }
+  .cat-summary-title { font-size:0.95rem; font-weight:700; margin-bottom:14px; }
+  .cat-bar-row { margin-bottom:10px; }
+  .cat-bar-label { display:flex; justify-content:space-between; font-size:0.78rem; margin-bottom:4px; }
+  .cat-bar-bg { background:var(--lightgray); border-radius:20px; height:8px; overflow:hidden; }
+  .cat-bar-fill { height:100%; border-radius:20px; transition:width 0.4s ease; }
+
+  .split-toggle { display:flex; align-items:center; gap:8px; font-size:0.82rem; color:var(--gray); margin-top:8px; cursor:pointer; }
+  .split-toggle input { width:16px; height:16px; cursor:pointer; accent-color:var(--rose); }
+
+  @media(max-width:520px) {
+    .expense-list-header, .expense-row { grid-template-columns:48px 60px 1fr 60px 28px; }
+    .expense-list-header span:nth-child(4), .expense-row span:nth-child(4) { display:none; }
+    .budget-summary { grid-template-columns:1fr 1fr; }
+    .expense-grid { grid-template-columns:70px 1fr; }
+    .expense-grid .col-cat { grid-column: 1 / -1; }
+  }
+
+  /* ── EXPORT BTN ── */
+  .export-bar { position: fixed; bottom: 20px; right: 20px; z-index: 200; display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+  .btn-export { background: var(--rose); color: #fff; border: none; border-radius: 50px; padding: 12px 20px;
+                 font-size: 0.85rem; font-weight: 700; cursor: pointer; box-shadow: 0 4px 20px rgba(232,99,122,0.4);
+                 display: flex; align-items: center; gap: 6px; transition: all 0.2s; }
+  .btn-export:hover { transform: scale(1.05); }
+  .btn-export.secondary { background: #fff; color: var(--rose); border: 2px solid var(--rose);
+                            box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+
+  /* ── SCROLL BAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-thumb { background: #ddd; border-radius: 3px; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 520px) {
+    .hero { height: 260px; }
+    .hero-title { font-size: 1.5rem; }
+    .hero-sub { font-size: 0.85rem; }
+    .section { padding: 16px 14px 60px; }
+    .hotel-grid { grid-template-columns: 1fr; }
+    .phrase-grid { grid-template-columns: 1fr; }
+    .trend-grid { grid-template-columns: 1fr; }
+    .curr-row { flex-direction: column; gap: 0; }
+    .curr-arrow { transform: rotate(90deg); margin: 6px auto; }
+    .curr-input { font-size: 1rem; padding: 12px; }
+    .curr-rate-num { font-size: 1.6rem; }
+    .act-body { padding: 12px; }
+    .act-title { font-size: 0.92rem; }
+    .act-desc { font-size: 0.8rem; }
+    .act-img { height: 130px; }
+    .trend-img { height: 160px; }
+    .export-bar { bottom: 14px; right: 14px; }
+    .btn-export { padding: 10px 16px; font-size: 0.8rem; }
+    .airline-table { font-size: 0.76rem; }
+    .airline-table th, .airline-table td { padding: 8px 6px; }
+    .day-title { font-size: 1.1rem; }
+    .info-section-title { font-size: 1rem; }
+    .curr-presets { gap: 6px; }
+    .curr-preset { padding: 7px 12px; font-size: 0.78rem; }
+    .act-actions { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- EXPORT BAR -->
+<div class="export-bar">
+  <a class="btn-export secondary" href="https://docs.google.com/spreadsheets/d/1xiEUOvpQdeiNr972AXT6XxergLzJ-7AHkiJePxJdLCQ/edit?gid=1009487599#gid=1009487599" target="_blank">📋 결정 시트</a>
+  <button class="btn-export" onclick="exportHTML()">📤 공유용 다운로드</button>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-emoji">🛫 🇨🇳</div>
+    <div class="hero-title">2026 짧은 유부 여름방학</div>
+    <div class="hero-sub">July 24 – 26, 2026 · 상하이 2박 3일 ☀️✈️</div>
+    <div class="hero-tags">
+      <span class="hero-tag">유부 여름방학</span>
+      <span class="hero-tag">휴양 + 관광</span>
+      <span class="hero-tag">맛집 투어</span>
+      <span class="hero-tag">SNS 인생샷</span>
+    </div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('day1')">📅 Day 1</button>
+    <button class="tab" onclick="switchTab('day2')">📅 Day 2</button>
+    <button class="tab" onclick="switchTab('day3')">📅 Day 3</button>
+    <button class="tab" onclick="switchTab('hotel')">🏨 숙소·항공</button>
+    <button class="tab" onclick="switchTab('trend')">📸 SNS 스팟</button>
+    <button class="tab" onclick="switchTab('phrase')">💬 중국어 회화</button>
+    <button class="tab" onclick="switchTab('currency')">💱 환율 계산기</button>
+    <button class="tab" onclick="switchTab('budget')">💰 예산 기록</button>
+  </div>
+</div>
+
+<!-- DAY 1 -->
+<div class="section active" id="day1">
+  <div class="day-header">
+    <div>
+      <div class="day-badge">Day 1 · 7월 24일 목</div>
+      <div class="day-title">도착 & 첫 탐험 🌆</div>
+      <div class="day-desc">신천지 · 티엔쯔팡 · 외탄 야경</div>
+    </div>
+  </div>
+  <div class="timeline" id="timeline-day1">
+
+    <div class="act-card" data-id="d1-1">
+      <div class="act-time-col">
+        <div class="act-dot"></div>
+        <div class="act-time">오전</div>
+      </div>
+      <div class="act-body">
+        <div class="act-top">
+          <div class="act-icon-title">
+            <span class="act-icon">✈️</span>
+            <span class="act-title">인천 출발</span>
+            <span class="act-label">이동</span>
+          </div>
+        </div>
+        <div class="act-desc">인천 → 상하이 푸동(PVG) 약 2시간. 중국동방항공 기준 아침편 추천. 공항에서 지하철(2호선) 또는 마그레브 열차로 이동.</div>
+        <div class="act-tip">💡 마그레브 열차 체험 추천! 시속 430km, 8분이면 도심까지</div>
+        <div class="act-actions">
+          <button class="btn-edit" onclick="openEdit('d1-1')">✏️ 수정</button>
+          <button class="btn-del" onclick="deleteAct('d1-1')">🗑</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card" data-id="d1-2">
+      <div class="act-time-col">
+        <div class="act-dot"></div>
+        <div class="act-time">14:00</div>
+      </div>
+      <div class="act-body">
+        <div class="act-top">
+          <div class="act-icon-title">
+            <span class="act-icon">🏨</span>
+            <span class="act-title">호텔 체크인</span>
+            <span class="act-label">휴식</span>
+          </div>
+        </div>
+        <div class="act-desc">황포구(外滩) 또는 신천지 주변 숙소 체크인. 짐 맡기고 가볍게 씻은 뒤 출발.</div>
+        <div class="act-tip">💡 얼리 체크인 사전 요청하면 바로 입실 가능</div>
+        <div class="act-actions">
+          <button class="btn-edit" onclick="openEdit('d1-2')">✏️ 수정</button>
+          <button class="btn-del" onclick="deleteAct('d1-2')">🗑</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card" data-id="d1-3">
+      <div class="act-time-col">
+        <div class="act-dot"></div>
+        <div class="act-time">15:30</div>
+      </div>
+      <div class="act-body">
+        <div class="act-top">
+          <div class="act-icon-title">
+            <span class="act-icon">🏛</span>
+            <span class="act-title">신천지 (新天地)</span>
+            <span class="act-label">관광·카페</span>
+          </div>
+        </div>
+        <div class="act-desc">1930년대 석고문 양식의 골목. 유럽풍 거리 + 로컬 카페들. SNS 감성샷 찍기 딱 좋은 곳. 아이스크림 먹으며 산책.</div>
+        <img class="act-img" src="https://images.unsplash.com/photo-1534237710431-e2fc698436d0?w=700&q=80&auto=format&fit=crop" alt="신천지" onerror="this.style.display='none'">
+        <div class="act-tip">💡 북쪽 블록(North Block) 위주로 둘러보기</div>
+        <div class="act-actions">
+          <button class="btn-edit" onclick="openEdit('d1-3')">✏️ 수정</button>
+          <button class="btn-del" onclick="deleteAct('d1-3')">🗑</button>
+          <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Xintiandi+Shanghai" target="_blank">🗺️ 구글맵</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card" data-id="d1-4">
+      <div class="act-time-col">
+        <div class="act-dot"></div>
+        <div class="act-time">17:00</div>
+      </div>
+      <div class="act-body">
+        <div class="act-top">
+          <div class="act-icon-title">
+            <span class="act-icon">🎨</span>
+            <span class="act-title">티엔쯔팡 (田子坊)</span>
+            <span class="act-label">쇼핑·구경</span>
+          </div>
+        </div>
+        <div class="act-desc">미로같은 골목 사이 아기자기한 편집샵·공예품·기념품·카페. 현지 디자이너 소품 쇼핑하기 좋음. 1~2시간 여유롭게.</div>
+        <div class="act-tip">💡 수제 목걸이, 에코백, 중국 자수 파우치 인기</div>
+        <div class="act-actions">
+          <button class="btn-edit" onclick="openEdit('d1-4')">✏️ 수정</button>
+          <button class="btn-del" onclick="deleteAct('d1-4')">🗑</button>
+          <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Tianzifang+Shanghai" target="_blank">🗺️ 구글맵</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card" data-id="d1-5">
+      <div class="act-time-col">
+        <div class="act-dot"></div>
+        <div class="act-time">19:00</div>
+      </div>
+      <div class="act-body">
+        <div class="act-top">
+          <div class="act-icon-title">
+            <span class="act-icon">🍽️</span>
+            <span class="act-title">저녁 — 상하이 가정식</span>
+            <span class="act-label">맛집</span>
+          </div>
+        </div>
+        <div class="act-desc">외탄 근처 현지 식당에서 홍소육(紅燒肉), 취두부볶음, 상하이탕수육 맛보기. 추천: 鼎泰豐(딩타이펑) 상해점 또는 南京大牌档</div>
+        <div class="act-tip">💡 딩타이펑은 웨이팅 있을 수 있으니 예약 추천</div>
+        <div class="act-actions">
+          <button class="btn-edit" onclick="openEdit('d1-5')">✏️ 수정</button>
+          <button class="btn-del" onclick="deleteAct('d1-5')">🗑</button>
+          <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Din+Tai+Fung+Shanghai" target="_blank">🗺️ 구글맵</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card" data-id="d1-6">
+      <div class="act-time-col">
+        <div class="act-dot"></div>
+        <div class="act-time">20:30</div>
+      </div>
+      <div class="act-body">
+        <div class="act-top">
+          <div class="act-icon-title">
+            <span class="act-icon">🌉</span>
+            <span class="act-title">외탄 야경 (外滩)</span>
+            <span class="act-label">필수 코스</span>
+          </div>
+        </div>
+        <div class="act-desc">상하이 최고의 야경. 황포강 너머 푸동 마천루 + 식민지 시대 건물들. 강변 산책로 따라 천천히 걷기. 야경 사진 찍기 최적 장소.</div>
+        <img class="act-img" src="https://images.unsplash.com/photo-1538428494232-aed3f1ce4d51?w=700&q=80&auto=format&fit=crop" alt="외탄 야경" onerror="this.style.display='none'">
+        <div class="act-tip">💡 정동 쪽 바(Bar Rouge, The Captain) 루프탑에서 한 잔 🍸</div>
+        <div class="act-actions">
+          <button class="btn-edit" onclick="openEdit('d1-6')">✏️ 수정</button>
+          <button class="btn-del" onclick="deleteAct('d1-6')">🗑</button>
+          <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=The+Bund+Wai+Tan+Shanghai" target="_blank">🗺️ 구글맵</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <button class="add-act-btn" onclick="openAdd('day1')">+ 일정 추가하기</button>
+</div>
+
+<!-- DAY 2 -->
+<div class="section" id="day2">
+  <div class="day-header">
+    <div>
+      <div class="day-badge">Day 2 · 7월 25일 금</div>
+      <div class="day-title">프렌치 콘세션 완전 정복 🌿</div>
+      <div class="day-desc">안푸로 카페 · 우캉로 · 상생신소 · 정안사</div>
+    </div>
+  </div>
+  <div class="timeline" id="timeline-day2">
+
+    <div class="act-card" data-id="d2-1">
+      <div class="act-time-col">
+        <div class="act-dot"></div>
+        <div class="act-time">09:00</div>
+      </div>
+      <div class="act-body">
+        <div class="act-top">
+          <div class="act-icon-title">
+            <span class="act-icon">🥐</span>
+            <span class="act-title">호텔 조식 & 준비</span>
+            <span class="act-label">모닝 루틴</span>
+          </div>
+        </div>
+        <div class="act-desc">여유롭게 조식 먹고, 씻고, 오늘의 코디 완성. 카페 들러 아이스라테 한 잔.</div>
+        <div class="act-actions">
+          <button class="btn-edit" onclick="openEdit('d2-1')">✏️ 수정</button>
+          <button class="btn-del" onclick="deleteAct('d2-1')">🗑</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card" data-id="d2-2">
+      <div class="act-time-col">
+        <div class="act-dot"></div>
+        <div class="act-time">10:30</div>
+      </div>
+      <div class="act-body">
+        <div class="act-top">
+          <div class="act-icon-title">
+            <span class="act-icon">☕</span>
+            <span class="act-title">안푸로 (安福路) 카페 투어</span>
+            <span class="act-label">SNS 핫플</span>
+          </div>
+        </div>
+        <div class="act-desc">상하이에서 가장 트렌디한 카페 거리. 플래그십 스토어, 로컬 브랜드 카페들이 줄지어. 추천: MANNER COFFEE, %Arabica, Seesaw Coffee.</div>
+        <img class="act-img" src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=700&q=80&auto=format&fit=crop" alt="카페" onerror="this.style.display='none'">
+        <div class="act-tip">💡 소홍로(绍兴路) 숨은 카페 골목도 함께 탐방</div>
+        <div class="act-actions">
+          <button class="btn-edit" onclick="openEdit('d2-2')">✏️ 수정</button>
+          <button class="btn-del" onclick="deleteAct('d2-2')">🗑</button>
+          <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Anfu+Road+Shanghai+安福路" target="_blank">🗺️ 구글맵</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card" data-id="d2-3">
+      <div class="act-time-col">
+        <div class="act-dot"></div>
+        <div class="act-time">11:30</div>
+      </div>
+      <div class="act-body">
+        <div class="act-top">
+          <div class="act-icon-title">
+            <span class="act-icon">📸</span>
+            <span class="act-title">우캉로 (武康路) 포토 스팟</span>
+            <span class="act-label">인생샷</span>
+          </div>
+        </div>
+        <div class="act-desc">역사적 플라타너스 가로수 + 1930년대 우캉빌딩이 있는 상하이 최고 인스타 스팟. 유럽 느낌의 골목 산책. 투명 우산이나 꽃 들고 촬영 트렌드.</div>
+        <img class="act-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80&auto=format&fit=crop" alt="우캉로" onerror="this.style.display='none'">
+        <div class="act-tip">💡 오전 11~12시가 빛이 제일 예쁨. 주말은 사람 많으니 평일 오전 추천</div>
+        <div class="act-actions">
+          <button class="btn-edit" onclick="openEdit('d2-3')">✏️ 수정</button>
+          <button class="btn-del" onclick="deleteAct('d2-3')">🗑</button>
+          <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Wukang+Road+Wukang+Building+Shanghai+武康路" target="_blank">🗺️ 구글맵</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card" data-id="d2-4">
+      <div class="act-time-col">
+        <div class="act-dot"></div>
+        <div class="act-time">13:00</div>
+      </div>
+      <div class="act-body">
+        <div class="act-top">
+          <div class="act-icon-title">
+            <span class="act-icon">🥟</span>
+            <span class="act-title">점심 — 소룡포 (小笼包)</span>
+            <span class="act-label">맛집</span>
+          </div>
+        </div>
+        <div class="act-desc">상하이 대표 음식 소룡포! 추천: 南翔馒头店(남상만두점), 鼎泰豐(딩타이펑). 뜨거우니 조심히 살짝 베어 물어 국물 먼저 마시기.</div>
+        <div class="act-tip">💡 간장 + 생강채 곁들이는 게 정석. 게살 소룡포도 꼭 시도</div>
+        <div class="act-actions">
+          <button class="btn-edit" onclick="openEdit('d2-4')">✏️ 수정</button>
+          <button class="btn-del" onclick="deleteAct('d2-4')">🗑</button>
+          <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Nanxiang+Steamed+Bun+Shanghai+南翔馒头店" target="_blank">🗺️ 구글맵</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card" data-id="d2-5">
+      <div class="act-time-col">
+        <div class="act-dot"></div>
+        <div class="act-time">14:30</div>
+      </div>
+      <div class="act-body">
+        <div class="act-top">
+          <div class="act-icon-title">
+            <span class="act-icon">🏛️</span>
+            <span class="act-title">상생신소 (上生·新所 Columbia Circle)</span>
+            <span class="act-label">SNS 핫플</span>
+          </div>
+        </div>
+        <div class="act-desc">1920년대 미국 컬럼비아 컨트리클럽 리노베이션 공간. 수영장·잔디·카페·편집샵. 상하이에서 가장 트렌디한 복합문화공간. 유럽 빌라 분위기 인생샷.</div>
+        <img class="act-img" src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?w=700&q=80&auto=format&fit=crop" alt="컬럼비아 서클" onerror="this.style.display='none'">
+        <div class="act-tip">💡 HARMAY 화백 편집샵, Peet's Coffee 들러보기</div>
+        <div class="act-actions">
+          <button class="btn-edit" onclick="openEdit('d2-5')">✏️ 수정</button>
+          <button class="btn-del" onclick="deleteAct('d2-5')">🗑</button>
+          <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Columbia+Circle+Shanghai+上生新所" target="_blank">🗺️ 구글맵</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card" data-id="d2-6">
+      <div class="act-time-col">
+        <div class="act-dot"></div>
+        <div class="act-time">16:30</div>
+      </div>
+      <div class="act-body">
+        <div class="act-top">
+          <div class="act-icon-title">
+            <span class="act-icon">🛍️</span>
+            <span class="act-title">쇼핑 — 정안 지구</span>
+            <span class="act-label">쇼핑</span>
+          </div>
+        </div>
+        <div class="act-desc">정안사 상권 + 남경서로(南京西路). 중국 로컬 브랜드(URBAN REVIVO, 안타, 李宁), 면세점급 화장품. 스타필드 격인 嘉里中心(게리센터) 방문.</div>
+        <div class="act-tip">💡 중국 화장품 브랜드 花西子, 完美日记 구경 추천!</div>
+        <div class="act-actions">
+          <button class="btn-edit" onclick="openEdit('d2-6')">✏️ 수정</button>
+          <button class="btn-del" onclick="deleteAct('d2-6')">🗑</button>
+          <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Kerry+Centre+Shanghai+静安区" target="_blank">🗺️ 구글맵</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card" data-id="d2-7">
+      <div class="act-time-col">
+        <div class="act-dot"></div>
+        <div class="act-time">19:00</div>
+      </div>
+      <div class="act-body">
+        <div class="act-top">
+          <div class="act-icon-title">
+            <span class="act-icon">🌇</span>
+            <span class="act-title">루프탑 바 — 야경과 함께 저녁</span>
+            <span class="act-label">힐링</span>
+          </div>
+        </div>
+        <div class="act-desc">추천: Flair Rooftop (리츠칼튼 58층), Sir Elly's, Vue Bar. 석양 보며 칵테일 한 잔 + 가벼운 식사. 상하이 스카이라인 파노라마.</div>
+        <div class="act-tip">💡 예약 필수. 드레스코드 있는 곳 많으니 확인하기</div>
+        <div class="act-actions">
+          <button class="btn-edit" onclick="openEdit('d2-7')">✏️ 수정</button>
+          <button class="btn-del" onclick="deleteAct('d2-7')">🗑</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <button class="add-act-btn" onclick="openAdd('day2')">+ 일정 추가하기</button>
+</div>
+
+<!-- DAY 3 -->
+<div class="section" id="day3">
+  <div class="day-header">
+    <div>
+      <div class="day-badge">Day 3 · 7월 26일 토</div>
+      <div class="day-title">올드 상하이 & 귀국 🏯</div>
+      <div class="day-desc">예원 · 남경동로 쇼핑 · 공항</div>
+    </div>
+  </div>
+  <div class="timeline" id="timeline-day3">
+
+    <div class="act-card" data-id="d3-1">
+      <div class="act-time-col">
+        <div class="act-dot"></div>
+        <div class="act-time">09:00</div>
+      </div>
+      <div class="act-body">
+        <div class="act-top">
+          <div class="act-icon-title">
+            <span class="act-icon">🥐</span>
+            <span class="act-title">호텔 조식 & 체크아웃</span>
+            <span class="act-label">모닝 루틴</span>
+          </div>
+        </div>
+        <div class="act-desc">느긋하게 조식 먹고 체크아웃. 짐은 프런트에 맡겨두고 가볍게 출발.</div>
+        <div class="act-actions">
+          <button class="btn-edit" onclick="openEdit('d3-1')">✏️ 수정</button>
+          <button class="btn-del" onclick="deleteAct('d3-1')">🗑</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card" data-id="d3-2">
+      <div class="act-time-col">
+        <div class="act-dot"></div>
+        <div class="act-time">10:00</div>
+      </div>
+      <div class="act-body">
+        <div class="act-top">
+          <div class="act-icon-title">
+            <span class="act-icon">🪷</span>
+            <span class="act-title">예원 (豫園) + 성황묘</span>
+            <span class="act-label">전통·관광</span>
+          </div>
+        </div>
+        <div class="act-desc">명나라 시대 고전 정원. 중국식 정자·연못·금붕어. 성황묘 시장에서 구이링고 (귀령고), 유탸오 등 전통 먹거리 체험. 치파오 렌탈도 여기!</div>
+        <img class="act-img" src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=700&q=80&auto=format&fit=crop" alt="예원" onerror="this.style.display='none'">
+        <div class="act-tip">💡 오픈 직후(오전 10시) 방문하면 한산. 티켓 앱으로 미리 구매</div>
+        <div class="act-actions">
+          <button class="btn-edit" onclick="openEdit('d3-2')">✏️ 수정</button>
+          <button class="btn-del" onclick="deleteAct('d3-2')">🗑</button>
+          <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Yu+Garden+Shanghai+豫园" target="_blank">🗺️ 구글맵</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card" data-id="d3-3">
+      <div class="act-time-col">
+        <div class="act-dot"></div>
+        <div class="act-time">12:30</div>
+      </div>
+      <div class="act-body">
+        <div class="act-top">
+          <div class="act-icon-title">
+            <span class="act-icon">🍜</span>
+            <span class="act-title">점심 — 남상만두점 소룡포</span>
+            <span class="act-label">맛집</span>
+          </div>
+        </div>
+        <div class="act-desc">예원 내 명물 南翔馒头店(남상만두점). 1900년대부터 이어온 소룡포 원조. 2층 실내석 또는 1층 테이크아웃 추천. 줄 서는 것도 경험!</div>
+        <div class="act-tip">💡 蟹粉小笼 (게살 소룡포) 꼭 시도 — 가을철 최고지만 여름도 판매</div>
+        <div class="act-actions">
+          <button class="btn-edit" onclick="openEdit('d3-3')">✏️ 수정</button>
+          <button class="btn-del" onclick="deleteAct('d3-3')">🗑</button>
+          <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Nanxiang+Steamed+Bun+Restaurant+Yu+Garden+Shanghai" target="_blank">🗺️ 구글맵</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card" data-id="d3-4">
+      <div class="act-time-col">
+        <div class="act-dot"></div>
+        <div class="act-time">14:00</div>
+      </div>
+      <div class="act-body">
+        <div class="act-top">
+          <div class="act-icon-title">
+            <span class="act-icon">🛍️</span>
+            <span class="act-title">남경동로 쇼핑 & 마지막 카페</span>
+            <span class="act-label">쇼핑</span>
+          </div>
+        </div>
+        <div class="act-desc">외탄 바로 옆 남경동로(南京東路) 보행자 거리. 기념품, 과자, 화장품 마지막 쇼핑. 스타벅스 리저브 외탄점(세계 최대 규모) 방문 추천.</div>
+        <div class="act-tip">💡 스타벅스 리저브 로스터리 — 5층 규모 커피 공장 같은 곳, 포토존 최고</div>
+        <div class="act-actions">
+          <button class="btn-edit" onclick="openEdit('d3-4')">✏️ 수정</button>
+          <button class="btn-del" onclick="deleteAct('d3-4')">🗑</button>
+          <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Starbucks+Reserve+Roastery+Shanghai+南京西路" target="_blank">🗺️ 구글맵</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card" data-id="d3-5">
+      <div class="act-time-col">
+        <div class="act-dot"></div>
+        <div class="act-time">16:00</div>
+      </div>
+      <div class="act-body">
+        <div class="act-top">
+          <div class="act-icon-title">
+            <span class="act-icon">✈️</span>
+            <span class="act-title">공항 이동 & 귀국</span>
+            <span class="act-label">이동</span>
+          </div>
+        </div>
+        <div class="act-desc">푸동(PVG)은 도심에서 지하철 약 60분. 출발 3시간 전 공항 도착 추천. 가상 공항 면세점에서 마지막 쇼핑.</div>
+        <div class="act-tip">💡 PVG → ICN 저녁편 많음. 공항에서 인민폐 잔돈 환전 후 귀국</div>
+        <div class="act-actions">
+          <button class="btn-edit" onclick="openEdit('d3-5')">✏️ 수정</button>
+          <button class="btn-del" onclick="deleteAct('d3-5')">🗑</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <button class="add-act-btn" onclick="openAdd('day3')">+ 일정 추가하기</button>
+</div>
+
+<!-- 숙소·항공 -->
+<div class="section" id="hotel">
+  <div class="info-section-title">🏨 숙소 위치 추천</div>
+  <div class="info-card">
+    <div class="info-card-title">어느 지역이 좋을까?</div>
+    <div class="info-card-sub">아래 카드를 탭하면 선택 표시됩니다</div>
+    <div class="hotel-grid">
+      <div class="hotel-card" onclick="pickHotel(this)">
+        <img class="hotel-img" src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=400&q=80&auto=format&fit=crop" alt="외탄" onerror="this.style.background:'#f0ece8'">
+        <div class="hotel-body">
+          <div class="hotel-name">⭐ 황포구 · 외탄</div>
+          <div class="hotel-area">The Bund / Huangpu</div>
+          <div class="hotel-label">최추천</div>
+          <div class="hotel-pros">외탄 도보 5분 · 티엔쯔팡 근거리 · 관광 중심지 · 지하철 접근성 최고</div>
+        </div>
+      </div>
+      <div class="hotel-card" onclick="pickHotel(this)">
+        <img class="hotel-img" src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=400&q=80&auto=format&fit=crop" alt="신천지" onerror="this.style.background:'#f0ece8'">
+        <div class="hotel-body">
+          <div class="hotel-name">✨ 신천지 주변</div>
+          <div class="hotel-area">Xintiandi / Luwan</div>
+          <div class="hotel-label">트렌디</div>
+          <div class="hotel-pros">맛집·카페 밀집 · 세련된 분위기 · 안푸로·우캉로 근거리</div>
+        </div>
+      </div>
+      <div class="hotel-card" onclick="pickHotel(this)">
+        <img class="hotel-img" src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=400&q=80&auto=format&fit=crop" alt="정안" onerror="this.style.background:'#f0ece8'">
+        <div class="hotel-body">
+          <div class="hotel-name">🏙️ 정안구</div>
+          <div class="hotel-area">Jing'an District</div>
+          <div class="hotel-label">고급·편리</div>
+          <div class="hotel-pros">쇼핑몰 밀집 · 정안사 근거리 · 고급 호텔 많음 · 지하철 2호선</div>
+        </div>
+      </div>
+      <div class="hotel-card" onclick="pickHotel(this)">
+        <img class="hotel-img" src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=400&q=80&auto=format&fit=crop" alt="루자쭈이" onerror="this.style.background:'#f0ece8'">
+        <div class="hotel-body">
+          <div class="hotel-name">🌆 루자쭈이 · 푸동</div>
+          <div class="hotel-area">Lujiazui / Pudong</div>
+          <div class="hotel-label">뷰 최고</div>
+          <div class="hotel-pros">외탄 강 건너 뷰 · 고층 호텔 야경 · 공항 가까움 · 관광지에서 약간 멀</div>
+        </div>
+      </div>
+    </div>
+    <div class="tip-box" style="margin-top:14px">
+      <strong>💡 추천:</strong> 황포구(외탄 지역)에 숙소 잡으면 Day1·Day3 이동이 최소화됩니다.
+      신천지 근처도 Day2 코스(안푸로, 우캉로) 접근성이 좋아요.
+      <strong>호텔 추천:</strong> The Middle House(신천지), Waldorf Astoria(외탄), Le Royal Méridien(정안사)
+    </div>
+  </div>
+
+  <div class="info-section-title">✈️ 항공사 비교</div>
+  <div class="info-card">
+    <div class="info-card-title">인천(ICN) ↔ 상하이 푸동(PVG)</div>
+    <div class="info-card-sub">비행시간 약 2시간 / 하루 10편 이상 운항</div>
+    <table class="airline-table">
+      <tr>
+        <th>항공사</th>
+        <th>특징</th>
+        <th>가격대</th>
+        <th>안전도</th>
+      </tr>
+      <tr>
+        <td><strong>대한항공</strong> 🇰🇷</td>
+        <td>서비스 최고, 한국어 지원</td>
+        <td>25~40만원</td>
+        <td><span class="badge-safe">★★★★★</span></td>
+      </tr>
+      <tr>
+        <td><strong>아시아나항공</strong> 🇰🇷</td>
+        <td>기내식 맛있음, 한국어 지원</td>
+        <td>22~35만원</td>
+        <td><span class="badge-safe">★★★★★</span></td>
+      </tr>
+      <tr>
+        <td><strong>중국동방항공</strong> 🇨🇳</td>
+        <td>상하이 기반, 편수 많음</td>
+        <td>15~25만원</td>
+        <td><span class="badge-safe">★★★★☆</span></td>
+      </tr>
+      <tr>
+        <td><strong>중국국제항공</strong> 🇨🇳</td>
+        <td>국영 항공사</td>
+        <td>14~22만원</td>
+        <td><span class="badge-safe">★★★★☆</span></td>
+      </tr>
+      <tr>
+        <td><strong>진에어</strong> 🇰🇷</td>
+        <td>저비용, 직항</td>
+        <td>12~20만원</td>
+        <td><span class="badge-safe">★★★★☆</span></td>
+      </tr>
+    </table>
+    <div class="tip-box">
+      <strong>🔒 중국 항공사 안전한가요?</strong><br>
+      중국동방항공, 중국국제항공 모두 IATA 국제 안전 기준을 통과한 정식 항공사예요.
+      중국동방항공은 2022년 사고 이후 대대적인 안전 점검을 강화했습니다.
+      예산이 넉넉하면 <strong>대한항공·아시아나</strong>, 가성비 원하면 <strong>중국동방항공·진에어</strong> 추천합니다.
+      모두 일상적인 노선에서 안전하게 운항 중이에요 ✅
+    </div>
+  </div>
+
+  <div class="info-section-title">💡 상하이 필수 준비물</div>
+  <div class="info-card">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:0.84rem;line-height:1.8">
+      <div>
+        📱 <strong>앱</strong><br>
+        • WeChat Pay (결제)<br>
+        • Alipay (결제)<br>
+        • DiDi (택시)<br>
+        • 바이두 지도
+      </div>
+      <div>
+        📋 <strong>서류</strong><br>
+        • 여권 (6개월 이상 잔여)<br>
+        • 중국 비자 또는 무비자 입국<br>
+        • 귀국 항공권 예약 확인증
+      </div>
+      <div>
+        💰 <strong>환전·결제</strong><br>
+        • 위안화 현금 일부<br>
+        • 알리페이 외국인 계좌<br>
+        • 카드(VISA/Master)
+      </div>
+      <div>
+        🌐 <strong>인터넷</strong><br>
+        • VPN 앱 미리 설치<br>
+        • 중국 현지 유심<br>
+        (구글·인스타 차단됨)
+      </div>
+    </div>
+    <div class="tip-box" style="margin-top:12px">
+      <strong>⚠️ 중요:</strong> 중국에서 인스타그램·구글이 안 돼요! VPN 앱(NordVPN, ExpressVPN 등)을 <strong>출국 전에 미리</strong> 설치해 두세요. 현지에서 다운로드 불가.
+    </div>
+  </div>
+</div>
+
+<!-- SNS 스팟 -->
+<div class="section" id="trend">
+
+  <div style="background:linear-gradient(135deg,#e8637a,#c9a84c);border-radius:16px;padding:18px 20px;color:#fff;margin-bottom:20px">
+    <div style="font-size:1.5rem;font-weight:800;margin-bottom:4px">📲 상하이 핫플 완전판</div>
+    <div style="font-size:0.85rem;opacity:0.92">인생샷 · 맛집 · 쇼핑 · 관광 · 체험 총 26곳</div>
+  </div>
+
+  <!-- 인생샷 -->
+  <div class="info-section-title">📸 인생샷 스팟</div>
+  <div class="trend-grid">
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80&auto=format&fit=crop" alt="우캉로" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#667eea,#764ba2)';d.textContent='🌳';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">🔥</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">우캉로 투명우산 샷</div>
+        <div class="trend-desc">플라타너스 가로수 + 우캉빌딩. 투명우산·꽃다발 들고 찍기. 샤오홍수 역대 최다 공유 스팟. 오전 11시가 빛 최고.</div>
+        <div class="trend-tags"><span class="trend-tag">#우캉로</span><span class="trend-tag">#武康路</span><span class="trend-tag">#인생샷</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?w=400&q=80&auto=format&fit=crop" alt="상생신소" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#f093fb,#f5576c)';d.textContent='🏛';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">🔥</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">상생신소 Columbia Circle</div>
+        <div class="trend-desc">1920년대 미국 컨트리클럽 리노베이션. 야외 수영장·잔디·빈티지 건물. 유럽 빌라 감성. HARMAY·Peet's Coffee 입점.</div>
+        <div class="trend-tags"><span class="trend-tag">#상생신소</span><span class="trend-tag">#上生新所</span><span class="trend-tag">#레트로감성</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1538428494232-aed3f1ce4d51?w=400&q=80&auto=format&fit=crop" alt="외탄야경" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#4facfe,#00f2fe)';d.textContent='🌉';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">🔥</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">외탄 야경 골든아워</div>
+        <div class="trend-desc">일몰 직후 20분이 황금타임. 황포강 반사 + 푸동 마천루 + 식민지 건물. 강변 난간에서 찍는 미러샷 유행.</div>
+        <div class="trend-tags"><span class="trend-tag">#외탄</span><span class="trend-tag">#The Bund</span><span class="trend-tag">#야경</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&q=80&auto=format&fit=crop" alt="1933라오창팡" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#43e97b,#38f9d7)';d.textContent='🏭';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">✨</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">1933 라오창팡 건축샷</div>
+        <div class="trend-desc">옛 도축장을 개조한 인더스트리얼 공간. 나선형 계단·콘크리트 구조물·복층 브릿지. 건축 마니아 인증샷 필수.</div>
+        <div class="trend-tags"><span class="trend-tag">#1933</span><span class="trend-tag">#老场坊</span><span class="trend-tag">#인더스트리얼</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1499678567-1e3b46bff0e4?w=400&q=80&auto=format&fit=crop" alt="M50그래피티" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#fa709a,#fee140)';d.textContent='🎨';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">✨</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">M50 창의원 그래피티</div>
+        <div class="trend-desc">방직공장 개조 현대미술단지. 150개+ 갤러리·벽화·그래피티. 상하이판 브루클린. 대부분 무료 입장.</div>
+        <div class="trend-tags"><span class="trend-tag">#M50</span><span class="trend-tag">#莫干山路</span><span class="trend-tag">#스트릿아트</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=400&q=80&auto=format&fit=crop" alt="신천지골목" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#a18cd1,#fbc2eb)';d.textContent='🌸';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">✨</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">신천지 석고문 골목</div>
+        <div class="trend-desc">1930년대 상하이 전통 주택 골목. 유럽+중국 절충 건축. 카페·부티크 입점. 골목 안쪽이 더 감성적.</div>
+        <div class="trend-tags"><span class="trend-tag">#신천지</span><span class="trend-tag">#新天地</span><span class="trend-tag">#석고문</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 맛집 -->
+  <div class="info-section-title">🍜 맛집 & 카페</div>
+  <div class="trend-grid">
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400&q=80&auto=format&fit=crop" alt="소룡포" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#f6d365,#fda085)';d.textContent='🥟';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">🔥</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">가가소룡 소룡포</div>
+        <div class="trend-desc">현지인이 줄 서는 진짜 맛집. 황하로 본점. 게살 소룡포 必주문. 딩타이펑보다 현지 감성. 1인 30~50위안.</div>
+        <div class="trend-tags"><span class="trend-tag">#가가소룡</span><span class="trend-tag">#佳家汤包</span><span class="trend-tag">#현지맛집</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1558618048-fb4cd4dd5020?w=400&q=80&auto=format&fit=crop" alt="헤이티밀크티" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#30cfd0,#330867)';d.textContent='🍵';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">🔥</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">헤이티 (喜茶 HEYTEA)</div>
+        <div class="trend-desc">중국 밀크티 원조 브랜드. 그레이프 버블티·치즈폼 시리즈. 한국보다 훨씬 저렴. SNS 컵 들고 사진 찍기 필수.</div>
+        <div class="trend-tags"><span class="trend-tag">#헤이티</span><span class="trend-tag">#喜茶</span><span class="trend-tag">#밀크티</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400&q=80&auto=format&fit=crop" alt="스타벅스리저브" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#0ba360,#3cba92)';d.textContent='☕';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">🔥</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">스타벅스 리저브 로스터리</div>
+        <div class="trend-desc">세계 최대 5층 스타벅스. 남경서로 위치. 구리 배관 인테리어·커피 나무 전시. 건물 자체가 인스타 포토존.</div>
+        <div class="trend-tags"><span class="trend-tag">#스벅리저브</span><span class="trend-tag">#남경서로</span><span class="trend-tag">#포토존</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80&auto=format&fit=crop" alt="홍소육" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#f77062,#fe5196)';d.textContent='🫕';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">✨</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">홍소육 (紅燒肉) 맛집</div>
+        <div class="trend-desc">상하이 전통 돼지고기 조림. 추천: 老吉士(Lao Jishi) - 현지인 최애 오마카세식 상하이 요리. 예약 필수.</div>
+        <div class="trend-tags"><span class="trend-tag">#홍소육</span><span class="trend-tag">#老吉士</span><span class="trend-tag">#현지요리</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400&q=80&auto=format&fit=crop" alt="안푸로카페" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#ffecd2,#fcb69f)';d.textContent='🧋';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">✨</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">안푸로 카페 호핑</div>
+        <div class="trend-desc">MANNER·%Arabica·Seesaw 등 로컬 카페 집결지. 소홍로(绍兴路) 숨은 골목까지 탐방. 카페마다 독특한 인테리어.</div>
+        <div class="trend-tags"><span class="trend-tag">#안푸로</span><span class="trend-tag">#安福路</span><span class="trend-tag">#카페투어</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80&auto=format&fit=crop" alt="게살요리" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#a1c4fd,#c2e9fb)';d.textContent='🦀';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">✨</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">게살 요리 (蟹黄)</div>
+        <div class="trend-desc">여름이라도 냉동 게살 소룡포·게살볶음밥 맛볼 수 있음. 蟹叁寳 추천. SNS에서 게살 올린 요리 먹방 콘텐츠 폭발적.</div>
+        <div class="trend-tags"><span class="trend-tag">#게살요리</span><span class="trend-tag">#蟹黄</span><span class="trend-tag">#먹방</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쇼핑 -->
+  <div class="info-section-title">🛍️ 쇼핑 스팟</div>
+  <div class="trend-grid">
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=400&q=80&auto=format&fit=crop" alt="팝마트" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#ff9a9e,#fecfef)';d.textContent='🎁';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">🔥</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">팝마트 (Pop Mart / 泡泡玛特)</div>
+        <div class="trend-desc">블라인드박스 장난감 원조. 한국보다 20~30% 저렴. 상하이 한정판 시리즈 있음. 선물용으로도 최고. 난징동루·신천지 매장 있음.</div>
+        <div class="trend-tags"><span class="trend-tag">#팝마트</span><span class="trend-tag">#泡泡玛特</span><span class="trend-tag">#한정판</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400&q=80&auto=format&fit=crop" alt="HARMAY뷰티" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#667eea,#764ba2)';d.textContent='💄';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">🔥</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">HARMAY 화백 뷰티샵</div>
+        <div class="trend-desc">창고형 멀티브랜드 화장품. 샤넬·디올 소용량 판매. 중국 로컬 브랜드 花西子·完美日记. 상생신소·안푸로 지점.</div>
+        <div class="trend-tags"><span class="trend-tag">#HARMAY</span><span class="trend-tag">#화백</span><span class="trend-tag">#뷰티</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=400&q=80&auto=format&fit=crop" alt="Looknow편집샵" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#f6d365,#fda085)';d.textContent='👗';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">✨</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">Looknow 편집샵</div>
+        <div class="trend-desc">3층 규모 로컬·글로벌 신진 브랜드 편집샵. 화이하이루 위치. Gimaguas·Paloma Wool 등. 상하이 패션피플 성지.</div>
+        <div class="trend-tags"><span class="trend-tag">#Looknow</span><span class="trend-tag">#화이하이루</span><span class="trend-tag">#편집샵</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=400&q=80&auto=format&fit=crop" alt="난징동루" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#4facfe,#00f2fe)';d.textContent='🏬';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">✨</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">난징동루 쇼핑 거리</div>
+        <div class="trend-desc">보행자 전용 상하이 최대 상업지구. 미니소랜드·팝마트·M&M 플래그십. 신세계 백화점. 기념품 쇼핑 끝판왕.</div>
+        <div class="trend-tags"><span class="trend-tag">#난징동루</span><span class="trend-tag">#南京东路</span><span class="trend-tag">#쇼핑</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400&q=80&auto=format&fit=crop" alt="로컬브랜드" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#43e97b,#38f9d7)';d.textContent='🧴';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">✨</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">중국 로컬 브랜드 쇼핑</div>
+        <div class="trend-desc">李宁(리닝)·安踏(안타) 스포츠. 花西子 메이크업. Melt Season 향수. 한국보다 훨씬 저렴하고 퀄리티 좋음.</div>
+        <div class="trend-tags"><span class="trend-tag">#리닝</span><span class="trend-tag">#화시자</span><span class="trend-tag">#로컬브랜드</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400&q=80&auto=format&fit=crop" alt="티엔쯔팡" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#fa709a,#fee140)';d.textContent='🎪';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">✨</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">티엔쯔팡 공예 쇼핑</div>
+        <div class="trend-desc">미로 같은 골목에 수공예 소품·중국 자수·도자기. 로컬 디자이너 편집샵. 에코백·파우치·자개 아이템 인기.</div>
+        <div class="trend-tags"><span class="trend-tag">#티엔쯔팡</span><span class="trend-tag">#田子坊</span><span class="trend-tag">#공예품</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 관광 -->
+  <div class="info-section-title">🏛️ 관광지 & 문화</div>
+  <div class="trend-grid">
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1537944434965-cf4679d1a598?w=400&q=80&auto=format&fit=crop" alt="상하이타워" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#0c3483,#a2b6df)';d.textContent='🏙️';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">🔥</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">상하이 타워 전망대</div>
+        <div class="trend-desc">세계 2위 높이 632m. 118층 구름 아래 사진. 발 아래 도시 전체. 맑은 날 한정 필수 방문. 온라인 예약 추천.</div>
+        <div class="trend-tags"><span class="trend-tag">#상하이타워</span><span class="trend-tag">#上海中心</span><span class="trend-tag">#전망대</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=400&q=80&auto=format&fit=crop" alt="롱화사원" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#d4fc79,#96e6a1)';d.textContent='🪷';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">✨</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">롱화사원 (龙华寺)</div>
+        <div class="trend-desc">상하이 최고 불교 사원. 1700년 역사. 향 연기·붉은 담장·금색 불상. 한국 절과 다른 중국식 웅장함. 탑 포토존.</div>
+        <div class="trend-tags"><span class="trend-tag">#롱화사원</span><span class="trend-tag">#龙华寺</span><span class="trend-tag">#사원</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&q=80&auto=format&fit=crop" alt="예원야시장" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#f093fb,#f5576c)';d.textContent='🎭';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">✨</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">예원 & 성황묘 야시장</div>
+        <div class="trend-desc">명나라 정원 + 야시장. 저녁엔 조명 켜져서 낮보다 훨씬 예쁨. 탕후루·호떡·군만두 길거리 음식 천국.</div>
+        <div class="trend-tags"><span class="trend-tag">#예원</span><span class="trend-tag">#豫园</span><span class="trend-tag">#야시장</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1558865869-c93f6f8482af?w=400&q=80&auto=format&fit=crop" alt="외탄미술관" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#30cfd0,#667eea)';d.textContent='🎨';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">✨</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">외탄 미술관 & Bund 18</div>
+        <div class="trend-desc">식민지 시대 건물 내 현대 미술관. 루이비통·까르띠에 팝업 자주 열림. 건물 자체가 예술. 무료 전시도 있음.</div>
+        <div class="trend-tags"><span class="trend-tag">#외탄미술관</span><span class="trend-tag">#Bund18</span><span class="trend-tag">#전시</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 체험 -->
+  <div class="info-section-title">🎭 체험</div>
+  <div class="trend-grid">
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400&q=80&auto=format&fit=crop" alt="치파오체험" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#ffecd2,#fcb69f)';d.textContent='👘';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">🔥</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">치파오 (旗袍) 렌탈 체험</div>
+        <div class="trend-desc">전통 중국 드레스 빌려 예원·외탄 투어. 예원 주변 렌탈샵 多. 헤어·메이크업 포함 패키지 있음. 2~3시간 약 150~300위안.</div>
+        <div class="trend-tags"><span class="trend-tag">#치파오</span><span class="trend-tag">#旗袍</span><span class="trend-tag">#체험</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&q=80&auto=format&fit=crop" alt="다도체험" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#a18cd1,#fbc2eb)';d.textContent='🍵';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">✨</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">전통 다도 체험</div>
+        <div class="trend-desc">용정차·보이차·재스민차 테이스팅. 老城厢 전통 찻집. 다구 세트 직접 사용. 힐링 + 중국 문화 체험. 1인 50~100위안.</div>
+        <div class="trend-tags"><span class="trend-tag">#다도</span><span class="trend-tag">#茶道</span><span class="trend-tag">#힐링</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=400&q=80&auto=format&fit=crop" alt="황포강크루즈" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#0ba360,#3cba92)';d.textContent='🚢';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">✨</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">황포강 야간 크루즈</div>
+        <div class="trend-desc">외탄 선착장 출발, 40~60분. 배 위에서 양안 야경 파노라마. 선상 칵테일 즐기기. 1인 약 100~180위안.</div>
+        <div class="trend-tags"><span class="trend-tag">#황포강</span><span class="trend-tag">#크루즈</span><span class="trend-tag">#야경</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-img-wrap">
+        <img class="trend-img" src="https://images.unsplash.com/photo-1567333971-b08e8e04b99e?w=400&q=80&auto=format&fit=crop" alt="루프탑바" onerror="this.style.display='none';this.nextSibling&&this.nextSibling.remove();var d=document.createElement('div');d.className='trend-img-div';d.style.background='linear-gradient(135deg,#f6d365,#fda085)';d.textContent='🌃';this.parentNode.insertBefore(d,this);">
+        <div class="trend-rank">✨</div>
+      </div>
+      <div class="trend-body">
+        <div class="trend-name">루프탑 바 선셋 타임</div>
+        <div class="trend-desc">Flair(리츠칼튼 58층)·Sir Elly's·Vue Bar. 일몰 시간 맞춰 입장. 칵테일 한 잔 + 스카이라인 뷰. 예약 필수.</div>
+        <div class="trend-tags"><span class="trend-tag">#루프탑바</span><span class="trend-tag">#선셋</span><span class="trend-tag">#야경</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip-box" style="margin-top:20px">
+    <strong>📱 정보 찾는 법</strong><br>
+    최신 상하이 핫플은 <strong>小红书(샤오홍수/RED 앱)</strong>에서 검색하면 제일 빨라요. 한국어로 검색해도 결과 많이 나옴! 인스타 업로드는 VPN 켜고 하기 🔒
+  </div>
+</div>
+
+<!-- 중국어 회화 -->
+<div class="section" id="phrase">
+  <div style="background:linear-gradient(135deg,#e8637a,#f5a7b5);border-radius:16px;padding:20px;color:#fff;margin-bottom:20px;text-align:center">
+    <div style="font-size:1.8rem;margin-bottom:6px">🇨🇳 중국어 회화 핵심 모음</div>
+    <div style="font-size:0.88rem;opacity:0.9">발음 누르면 읽는 법 확인 · 상황별로 골라 써요</div>
+  </div>
+
+  <div style="background:#fff3cd;border-radius:12px;padding:12px 16px;font-size:0.82rem;color:#856404;margin-bottom:16px">
+    🔊 <strong>발음 듣기:</strong> 각 카드의 🔊 버튼을 누르면 중국어 발음을 들을 수 있어요 (인터넷 필요)
+  </div>
+
+  <div class="info-section-title">👋 기본 인사</div>
+  <div class="phrase-grid">
+    <div class="phrase-card"><div class="phrase-cn">你好<button class="btn-speak" onclick="speak('你好')">🔊</button></div><div class="phrase-pinyin">Nǐ hǎo</div><div class="phrase-kr">안녕하세요</div></div>
+    <div class="phrase-card"><div class="phrase-cn">谢谢<button class="btn-speak" onclick="speak('谢谢')">🔊</button></div><div class="phrase-pinyin">Xièxie</div><div class="phrase-kr">감사합니다</div></div>
+    <div class="phrase-card"><div class="phrase-cn">不客气<button class="btn-speak" onclick="speak('不客气')">🔊</button></div><div class="phrase-pinyin">Bú kèqi</div><div class="phrase-kr">천만에요</div></div>
+    <div class="phrase-card"><div class="phrase-cn">对不起<button class="btn-speak" onclick="speak('对不起')">🔊</button></div><div class="phrase-pinyin">Duìbuqǐ</div><div class="phrase-kr">죄송합니다</div></div>
+    <div class="phrase-card"><div class="phrase-cn">好的<button class="btn-speak" onclick="speak('好的')">🔊</button></div><div class="phrase-pinyin">Hǎo de</div><div class="phrase-kr">네 / 알겠어요</div></div>
+    <div class="phrase-card"><div class="phrase-cn">不要<button class="btn-speak" onclick="speak('不要')">🔊</button></div><div class="phrase-pinyin">Bú yào</div><div class="phrase-kr">괜찮아요 / 싫어요</div></div>
+  </div>
+
+  <div class="info-section-title">🍽️ 식당에서</div>
+  <div class="phrase-grid">
+    <div class="phrase-card"><div class="phrase-cn">我要这个<button class="btn-speak" onclick="speak('我要这个')">🔊</button></div><div class="phrase-pinyin">Wǒ yào zhège</div><div class="phrase-kr">이거 주세요</div></div>
+    <div class="phrase-card"><div class="phrase-cn">两个人<button class="btn-speak" onclick="speak('两个人')">🔊</button></div><div class="phrase-pinyin">Liǎng gè rén</div><div class="phrase-kr">두 명이에요</div></div>
+    <div class="phrase-card"><div class="phrase-cn">不要辣<button class="btn-speak" onclick="speak('不要辣')">🔊</button></div><div class="phrase-pinyin">Bú yào là</div><div class="phrase-kr">안 맵게 해주세요</div></div>
+    <div class="phrase-card"><div class="phrase-cn">推荐什么？<button class="btn-speak" onclick="speak('推荐什么')">🔊</button></div><div class="phrase-pinyin">Tuījiàn shénme?</div><div class="phrase-kr">뭘 추천해요?</div></div>
+    <div class="phrase-card"><div class="phrase-cn">买单<button class="btn-speak" onclick="speak('买单')">🔊</button></div><div class="phrase-pinyin">Mǎidān</div><div class="phrase-kr">계산해 주세요</div></div>
+    <div class="phrase-card"><div class="phrase-cn">好吃！<button class="btn-speak" onclick="speak('好吃')">🔊</button></div><div class="phrase-pinyin">Hǎo chī!</div><div class="phrase-kr">맛있어요!</div></div>
+    <div class="phrase-card"><div class="phrase-cn">可以打包吗？<button class="btn-speak" onclick="speak('可以打包吗')">🔊</button></div><div class="phrase-pinyin">Kěyǐ dǎbāo ma?</div><div class="phrase-kr">포장 돼요?</div></div>
+    <div class="phrase-card"><div class="phrase-cn">微信支付<button class="btn-speak" onclick="speak('微信支付')">🔊</button></div><div class="phrase-pinyin">Wēixìn zhīfù</div><div class="phrase-kr">위챗페이로 할게요</div></div>
+  </div>
+
+  <div class="info-section-title">🛍️ 쇼핑할 때</div>
+  <div class="phrase-grid">
+    <div class="phrase-card"><div class="phrase-cn">多少钱？<button class="btn-speak" onclick="speak('多少钱')">🔊</button></div><div class="phrase-pinyin">Duōshao qián?</div><div class="phrase-kr">얼마예요?</div></div>
+    <div class="phrase-card"><div class="phrase-cn">太贵了<button class="btn-speak" onclick="speak('太贵了')">🔊</button></div><div class="phrase-pinyin">Tài guì le</div><div class="phrase-kr">너무 비싸요</div></div>
+    <div class="phrase-card"><div class="phrase-cn">便宜一点<button class="btn-speak" onclick="speak('便宜一点')">🔊</button></div><div class="phrase-pinyin">Piányí yīdiǎn</div><div class="phrase-kr">좀 깎아주세요</div></div>
+    <div class="phrase-card"><div class="phrase-cn">可以试穿吗？<button class="btn-speak" onclick="speak('可以试穿吗')">🔊</button></div><div class="phrase-pinyin">Kěyǐ shì chuān ma?</div><div class="phrase-kr">입어볼 수 있어요?</div></div>
+    <div class="phrase-card"><div class="phrase-cn">有没有...？<button class="btn-speak" onclick="speak('有没有')">🔊</button></div><div class="phrase-pinyin">Yǒu méiyǒu...?</div><div class="phrase-kr">...있어요?</div></div>
+    <div class="phrase-card"><div class="phrase-cn">我不买了<button class="btn-speak" onclick="speak('我不买了')">🔊</button></div><div class="phrase-pinyin">Wǒ bù mǎi le</div><div class="phrase-kr">안 살게요</div></div>
+  </div>
+
+  <div class="info-section-title">🚇 이동할 때</div>
+  <div class="phrase-grid">
+    <div class="phrase-card"><div class="phrase-cn">去外滩<button class="btn-speak" onclick="speak('去外滩')">🔊</button></div><div class="phrase-pinyin">Qù Wàitān</div><div class="phrase-kr">외탄 가주세요</div></div>
+    <div class="phrase-card"><div class="phrase-cn">地铁站在哪里？<button class="btn-speak" onclick="speak('地铁站在哪里')">🔊</button></div><div class="phrase-pinyin">Dìtiě zhàn zài nǎlǐ?</div><div class="phrase-kr">지하철역 어디예요?</div></div>
+    <div class="phrase-card"><div class="phrase-cn">厕所在哪里？<button class="btn-speak" onclick="speak('厕所在哪里')">🔊</button></div><div class="phrase-pinyin">Cèsuǒ zài nǎlǐ?</div><div class="phrase-kr">화장실 어디예요?</div></div>
+    <div class="phrase-card"><div class="phrase-cn">打滴滴<button class="btn-speak" onclick="speak('打滴滴')">🔊</button></div><div class="phrase-pinyin">Dǎ DiDi</div><div class="phrase-kr">디디 (택시앱) 부를게요</div></div>
+  </div>
+
+  <div class="info-section-title">📸 여행 필수 표현</div>
+  <div class="phrase-grid">
+    <div class="phrase-card"><div class="phrase-cn">帮我拍照<button class="btn-speak" onclick="speak('帮我拍照')">🔊</button></div><div class="phrase-pinyin">Bāng wǒ pāi zhào</div><div class="phrase-kr">사진 찍어주세요</div></div>
+    <div class="phrase-card"><div class="phrase-cn">再拍一张<button class="btn-speak" onclick="speak('再拍一张')">🔊</button></div><div class="phrase-pinyin">Zài pāi yī zhāng</div><div class="phrase-kr">한 장 더 찍어주세요</div></div>
+    <div class="phrase-card"><div class="phrase-cn">好漂亮！<button class="btn-speak" onclick="speak('好漂亮')">🔊</button></div><div class="phrase-pinyin">Hǎo piàoliang!</div><div class="phrase-kr">너무 예뻐요!</div></div>
+    <div class="phrase-card"><div class="phrase-cn">我听不懂<button class="btn-speak" onclick="speak('我听不懂')">🔊</button></div><div class="phrase-pinyin">Wǒ tīng bù dǒng</div><div class="phrase-kr">못 알아들었어요</div></div>
+    <div class="phrase-card"><div class="phrase-cn">写下来<button class="btn-speak" onclick="speak('写下来')">🔊</button></div><div class="phrase-pinyin">Xiě xià lái</div><div class="phrase-kr">써주세요</div></div>
+    <div class="phrase-card"><div class="phrase-cn">救命！<button class="btn-speak" onclick="speak('救命')">🔊</button></div><div class="phrase-pinyin">Jiùmìng!</div><div class="phrase-kr">살려주세요! (긴급)</div></div>
+  </div>
+
+  <div class="tip-box" style="margin-top:20px">
+    <strong>💡 실전 팁</strong><br>
+    중국어 못 해도 괜찮아요! 구글 번역 앱 카메라 기능으로 메뉴판 바로 번역 가능.
+    결제는 <strong>Alipay</strong> 앱 외국인 계좌로 거의 다 돼요.
+    막히면 스마트폰에 목적지 한자로 보여주기 — 다 통해요 😊
+  </div>
+</div>
+
+<!-- 예산 기록 -->
+<div class="section" id="budget">
+
+  <!-- 히어로 요약 -->
+  <div class="budget-hero">
+    <div class="budget-hero-title">💰 여행 예산 기록장</div>
+    <div class="budget-summary">
+      <div class="budget-stat">
+        <div class="budget-stat-num" id="b-total-budget">-</div>
+        <div class="budget-stat-label">총 예산</div>
+      </div>
+      <div class="budget-stat">
+        <div class="budget-stat-num" id="b-spent">0원</div>
+        <div class="budget-stat-label">사용금액</div>
+      </div>
+      <div class="budget-stat">
+        <div class="budget-stat-num" id="b-remain">-</div>
+        <div class="budget-stat-label">남은 금액</div>
+      </div>
+    </div>
+    <div class="budget-progress-wrap">
+      <div class="budget-progress-bg"><div class="budget-progress-bar" id="b-bar" style="width:0%"></div></div>
+      <div class="budget-progress-label"><span id="b-pct-label">0% 사용</span><span id="b-per-person"></span></div>
+    </div>
+    <label class="split-toggle">
+      <input type="checkbox" id="split-toggle" onchange="renderBudget()">
+      1인당 금액으로 보기 (÷2)
+    </label>
+  </div>
+
+  <!-- 예산 설정 -->
+  <div class="expense-form">
+    <div class="expense-form-title">⚙️ 총 예산 설정</div>
+    <div class="budget-set-row">
+      <div style="flex:1">
+        <label>총 예산 (원 KRW)</label>
+        <input type="number" id="budget-input" placeholder="예: 1500000" oninput="saveBudget()">
+      </div>
+      <button class="btn-set-budget" onclick="saveBudget()">저장</button>
+    </div>
+  </div>
+
+  <!-- 지출 추가 -->
+  <div class="expense-form">
+    <div class="expense-form-title">➕ 지출 추가</div>
+    <div class="expense-grid">
+      <div>
+        <label>날짜</label>
+        <select id="exp-date" style="width:100%;border:1.5px solid #f0ece8;border-radius:8px;padding:9px 6px;font-size:0.82rem">
+          <option>7/24</option><option>7/25</option><option>7/26</option>
+        </select>
+      </div>
+      <div class="col-cat">
+        <label>카테고리</label>
+        <select id="exp-cat">
+          <option>🍜 식비</option>
+          <option>☕ 카페</option>
+          <option>🛍️ 쇼핑</option>
+          <option>🏛️ 관광·체험</option>
+          <option>🚇 교통</option>
+          <option>🏨 숙소</option>
+          <option>✈️ 항공</option>
+          <option>🎭 기타</option>
+        </select>
+      </div>
+      <div>
+        <label>내용</label>
+        <input type="text" id="exp-desc" placeholder="예: 소룡포 점심">
+      </div>
+    </div>
+    <div class="expense-grid-2">
+      <div>
+        <label>💴 위안 (CNY)</label>
+        <input type="number" id="exp-cny" placeholder="0" oninput="autoFillKrw()">
+      </div>
+      <div>
+        <label>💵 원 (KRW)</label>
+        <input type="number" id="exp-krw" placeholder="0" oninput="autoFillCny()">
+      </div>
+    </div>
+    <button class="btn-add-expense" onclick="addExpense()">+ 지출 추가</button>
+  </div>
+
+  <!-- 지출 내역 -->
+  <div class="expense-list" id="expense-list-wrap">
+    <div class="expense-list-header">
+      <span>날짜</span><span>카테고리</span><span>내용</span>
+      <span>CNY</span><span>KRW</span><span></span>
+    </div>
+    <div id="expense-rows"><div class="expense-empty">아직 기록된 지출이 없어요 ✨</div></div>
+  </div>
+
+  <!-- 카테고리별 합계 -->
+  <div class="cat-summary">
+    <div class="cat-summary-title">📊 카테고리별 지출</div>
+    <div id="cat-bars"><div style="color:var(--gray);font-size:0.84rem;text-align:center;padding:16px 0">지출을 추가하면 여기에 분석이 나와요</div></div>
+  </div>
+</div>
+
+<!-- 환율 계산기 -->
+<div class="section" id="currency">
+  <div style="background:linear-gradient(135deg,#c9a84c,#f0d080);border-radius:16px;padding:20px;color:#fff;margin-bottom:20px;text-align:center">
+    <div style="font-size:1.8rem;margin-bottom:6px">💱 환율 계산기</div>
+    <div style="font-size:0.88rem;opacity:0.9">원화 ↔ 위안화 실시간 환산</div>
+  </div>
+
+  <div class="currency-box">
+    <div class="curr-rate-display">
+      <div class="curr-rate-label">현재 적용 환율 (1 CNY)</div>
+      <div class="curr-rate-num" id="rate-display">로딩 중...</div>
+      <div class="curr-rate-sub" id="rate-time">환율 불러오는 중</div>
+    </div>
+
+    <!-- KRW → CNY -->
+    <div class="curr-row">
+      <div class="curr-input-wrap">
+        <label>🇰🇷 한국 원 (KRW)</label>
+        <input class="curr-input" type="number" id="krw-input" placeholder="0" oninput="calcKrwToCny()">
+      </div>
+      <div class="curr-arrow">→</div>
+      <div class="curr-input-wrap">
+        <label>🇨🇳 중국 위안 (CNY)</label>
+        <input class="curr-input" type="number" id="cny-result1" placeholder="0" readonly style="background:#f8f5f0">
+      </div>
+    </div>
+
+    <!-- CNY → KRW -->
+    <div class="curr-row">
+      <div class="curr-input-wrap">
+        <label>🇨🇳 중국 위안 (CNY)</label>
+        <input class="curr-input" type="number" id="cny-input" placeholder="0" oninput="calcCnyToKrw()">
+      </div>
+      <div class="curr-arrow">→</div>
+      <div class="curr-input-wrap">
+        <label>🇰🇷 한국 원 (KRW)</label>
+        <input class="curr-input" type="number" id="krw-result2" placeholder="0" readonly style="background:#f8f5f0">
+      </div>
+    </div>
+
+    <div style="font-size:0.8rem;color:var(--gray);text-align:center;margin-top:4px">
+      ✏️ 어느 쪽이든 입력하면 자동 계산돼요
+    </div>
+
+    <div style="margin-top:20px">
+      <div style="font-size:0.82rem;color:var(--gray);font-weight:600;margin-bottom:8px">자주 쓰는 금액 (위안 → 원)</div>
+      <div class="curr-presets">
+        <button class="curr-preset" onclick="setCny(10)">10위안</button>
+        <button class="curr-preset" onclick="setCny(30)">30위안</button>
+        <button class="curr-preset" onclick="setCny(50)">50위안</button>
+        <button class="curr-preset" onclick="setCny(100)">100위안</button>
+        <button class="curr-preset" onclick="setCny(200)">200위안</button>
+        <button class="curr-preset" onclick="setCny(500)">500위안</button>
+      </div>
+    </div>
+
+    <table class="curr-table">
+      <tr><th>위안(CNY)</th><th>원(KRW) 약</th><th>참고</th></tr>
+      <tr id="ct-10"></tr>
+      <tr id="ct-30"></tr>
+      <tr id="ct-50"></tr>
+      <tr id="ct-100"></tr>
+      <tr id="ct-200"></tr>
+      <tr id="ct-500"></tr>
+    </table>
+
+    <div class="curr-update">⚠️ 환율은 실시간 API 기준. 실제 환전 시 수수료가 붙을 수 있어요. 환율 로딩 실패 시 1 CNY ≈ 190 KRW 적용.</div>
+  </div>
+</div>
+
+<!-- EDIT MODAL -->
+<div class="modal-overlay" id="edit-modal-overlay">
+  <div class="modal">
+    <div class="modal-title">✏️ 일정 수정</div>
+    <input type="hidden" id="edit-act-id">
+    <label>시간</label>
+    <input type="text" id="edit-time" placeholder="예: 14:00">
+    <label>제목</label>
+    <input type="text" id="edit-title" placeholder="일정 제목">
+    <label>내용</label>
+    <textarea id="edit-desc" placeholder="상세 내용"></textarea>
+    <label>팁 (선택)</label>
+    <input type="text" id="edit-tip" placeholder="💡 팁 내용">
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeModal()">취소</button>
+      <button class="btn-save" onclick="saveEdit()">저장</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD MODAL -->
+<div class="modal-overlay" id="add-modal-overlay">
+  <div class="modal">
+    <div class="modal-title" style="color:var(--rose)">+ 일정 추가</div>
+    <input type="hidden" id="add-day-id">
+    <label>시간</label>
+    <input type="text" id="add-time" placeholder="예: 15:30">
+    <label>이모지 + 제목</label>
+    <input type="text" id="add-title" placeholder="예: 🛍️ 쇼핑 타임">
+    <label>태그 (선택)</label>
+    <input type="text" id="add-label" placeholder="예: 맛집, 관광, 쇼핑">
+    <label>내용</label>
+    <textarea id="add-desc" placeholder="상세 내용을 입력하세요"></textarea>
+    <label>팁 (선택)</label>
+    <input type="text" id="add-tip" placeholder="💡 팁 내용">
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeAddModal()">취소</button>
+      <button class="btn-save" onclick="saveAdd()">추가</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Tab switching
+function switchTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const tabs = document.querySelectorAll('.tab');
+  const map = {day1:0, day2:1, day3:2, hotel:3, trend:4, phrase:5, currency:6, budget:7};
+  tabs[map[id]].classList.add('active');
+}
+
+// Chinese TTS
+function speak(text) {
+  if (!window.speechSynthesis) { alert('이 브라우저는 음성 기능을 지원하지 않아요'); return; }
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'zh-CN';
+  u.rate = 0.85;
+  window.speechSynthesis.speak(u);
+}
+
+// Currency
+let cnyRate = 190; // fallback KRW per 1 CNY
+
+async function loadRate() {
+  try {
+    const res = await fetch('https://open.er-api.com/v6/latest/CNY');
+    const data = await res.json();
+    if (data && data.rates && data.rates.KRW) {
+      cnyRate = Math.round(data.rates.KRW);
+      document.getElementById('rate-display').textContent = cnyRate.toLocaleString() + ' 원';
+      document.getElementById('rate-time').textContent = '실시간 환율 기준 · ' + new Date().toLocaleTimeString('ko-KR', {hour:'2-digit',minute:'2-digit'}) + ' 갱신';
+      buildTable();
+      return;
+    }
+  } catch(e) {}
+  // fallback
+  document.getElementById('rate-display').textContent = cnyRate.toLocaleString() + ' 원 (참고값)';
+  document.getElementById('rate-time').textContent = '⚠️ 실시간 로딩 실패 — 참고 환율 적용';
+  buildTable();
+}
+
+function buildTable() {
+  const amounts = [10,30,50,100,200,500];
+  amounts.forEach(a => {
+    const tr = document.getElementById('ct-'+a);
+    if (tr) tr.innerHTML = `<td><strong>${a}</strong></td><td>${(a*cnyRate).toLocaleString()}원</td><td style="color:var(--gray);font-size:0.78rem">${getHint(a)}</td>`;
+  });
+}
+
+function getHint(cny) {
+  if (cny === 10) return '작은 간식·음료';
+  if (cny === 30) return '길거리 음식 한 끼';
+  if (cny === 50) return '캐주얼 식당 1인';
+  if (cny === 100) return '소룡포 2인 식사';
+  if (cny === 200) return '편집샵 기념품';
+  if (cny === 500) return '쇼핑 여유 예산';
+  return '';
+}
+
+function calcKrwToCny() {
+  const krw = parseFloat(document.getElementById('krw-input').value) || 0;
+  document.getElementById('cny-result1').value = krw ? (krw / cnyRate).toFixed(2) : '';
+}
+
+function calcCnyToKrw() {
+  const cny = parseFloat(document.getElementById('cny-input').value) || 0;
+  document.getElementById('krw-result2').value = cny ? Math.round(cny * cnyRate).toLocaleString() : '';
+}
+
+function setCny(val) {
+  document.getElementById('cny-input').value = val;
+  calcCnyToKrw();
+}
+
+try { loadRate(); } catch(e) { console.warn('Rate load failed:', e); }
+
+// ── BUDGET ──
+const BUDGET_KEY = 'shanghai_budget_2026';
+let budgetData = { totalBudget: 0, expenses: [] };
+
+function loadBudgetData() {
+  try {
+    const saved = localStorage.getItem(BUDGET_KEY);
+    if (saved) budgetData = JSON.parse(saved);
+  } catch(e) {}
+  const bi = document.getElementById('budget-input');
+  if (budgetData.totalBudget && bi) bi.value = budgetData.totalBudget;
+  try { renderBudget(); } catch(e) {}
+}
+
+function saveBudget() {
+  const val = parseInt(document.getElementById('budget-input').value) || 0;
+  budgetData.totalBudget = val;
+  persistBudget();
+  renderBudget();
+}
+
+function persistBudget() {
+  try { localStorage.setItem(BUDGET_KEY, JSON.stringify(budgetData)); } catch(e) {}
+}
+
+function autoFillKrw() {
+  const cny = parseFloat(document.getElementById('exp-cny').value) || 0;
+  if (cny) document.getElementById('exp-krw').value = Math.round(cny * cnyRate);
+}
+function autoFillCny() {
+  const krw = parseFloat(document.getElementById('exp-krw').value) || 0;
+  if (krw) document.getElementById('exp-cny').value = (krw / cnyRate).toFixed(1);
+}
+
+function addExpense() {
+  const date = document.getElementById('exp-date').value;
+  const cat  = document.getElementById('exp-cat').value;
+  const desc = document.getElementById('exp-desc').value.trim();
+  const cny  = parseFloat(document.getElementById('exp-cny').value) || 0;
+  const krw  = parseInt(document.getElementById('exp-krw').value) || Math.round(cny * cnyRate);
+  if (!desc) { alert('내용을 입력해주세요'); return; }
+  if (!cny && !krw) { alert('금액을 입력해주세요'); return; }
+  budgetData.expenses.push({ id: Date.now(), date, cat, desc, cny, krw });
+  persistBudget();
+  renderBudget();
+  ['exp-desc','exp-cny','exp-krw'].forEach(id => document.getElementById(id).value = '');
+}
+
+function deleteExpense(id) {
+  if (!confirm('이 항목을 삭제할까요?')) return;
+  budgetData.expenses = budgetData.expenses.filter(e => e.id !== id);
+  persistBudget();
+  renderBudget();
+}
+
+const CAT_COLORS = {
+  '🍜 식비':'#e8637a','☕ 카페':'#c9a84c','🛍️ 쇼핑':'#a855f7',
+  '🏛️ 관광·체험':'#3b82f6','🚇 교통':'#10b981','🏨 숙소':'#f59e0b',
+  '✈️ 항공':'#6366f1','🎭 기타':'#6b7280'
+};
+
+function renderBudget() {
+  const split = document.getElementById('split-toggle')?.checked;
+  const div = split ? 2 : 1;
+  const totalKrw = budgetData.expenses.reduce((s,e) => s + e.krw, 0);
+  const budget = budgetData.totalBudget || 0;
+  const remain = budget - totalKrw;
+  const pct = budget ? Math.min(100, Math.round(totalKrw / budget * 100)) : 0;
+
+  const fmt = n => (n/div).toLocaleString('ko-KR') + '원';
+  document.getElementById('b-total-budget').textContent = budget ? fmt(budget) : '미설정';
+  document.getElementById('b-spent').textContent = fmt(totalKrw);
+  document.getElementById('b-remain').textContent = budget ? fmt(remain) : '-';
+  document.getElementById('b-bar').style.width = pct + '%';
+  document.getElementById('b-bar').style.background = pct > 90 ? '#ff4444' : pct > 70 ? '#ffaa00' : '#fff';
+  document.getElementById('b-pct-label').textContent = pct + '% 사용';
+  document.getElementById('b-per-person').textContent = split ? '(1인 기준)' : '(2인 합산)';
+
+  // rows
+  const rowsEl = document.getElementById('expense-rows');
+  if (!budgetData.expenses.length) {
+    rowsEl.innerHTML = '<div class="expense-empty">아직 기록된 지출이 없어요 ✨</div>';
+  } else {
+    rowsEl.innerHTML = [...budgetData.expenses].reverse().map(e => {
+      const color = CAT_COLORS[e.cat] || '#888';
+      const krwShow = Math.round(e.krw / div).toLocaleString();
+      return `<div class="expense-row">
+        <span style="color:var(--gray);font-size:0.75rem">${e.date}</span>
+        <span><span class="expense-cat-badge" style="background:${color}22;color:${color}">${e.cat.split(' ')[0]}</span></span>
+        <span style="font-weight:600">${e.desc}</span>
+        <span style="color:var(--gray)">${e.cny ? e.cny+'위안' : '-'}</span>
+        <span style="color:var(--rose);font-weight:700">${krwShow}원</span>
+        <button class="btn-del-expense" onclick="deleteExpense(${e.id})">🗑</button>
+      </div>`;
+    }).join('');
+  }
+
+  // category bars
+  const catTotals = {};
+  budgetData.expenses.forEach(e => { catTotals[e.cat] = (catTotals[e.cat] || 0) + e.krw; });
+  const maxCat = Math.max(...Object.values(catTotals), 1);
+  const catsEl = document.getElementById('cat-bars');
+  if (!Object.keys(catTotals).length) {
+    catsEl.innerHTML = '<div style="color:var(--gray);font-size:0.84rem;text-align:center;padding:16px 0">지출을 추가하면 여기에 분석이 나와요</div>';
+  } else {
+    catsEl.innerHTML = Object.entries(catTotals)
+      .sort((a,b) => b[1]-a[1])
+      .map(([cat, amt]) => {
+        const color = CAT_COLORS[cat] || '#888';
+        const pct = Math.round(amt / maxCat * 100);
+        const amtShow = Math.round(amt / div).toLocaleString();
+        return `<div class="cat-bar-row">
+          <div class="cat-bar-label"><span>${cat}</span><span style="font-weight:700">${amtShow}원</span></div>
+          <div class="cat-bar-bg"><div class="cat-bar-fill" style="width:${pct}%;background:${color}"></div></div>
+        </div>`;
+      }).join('');
+  }
+}
+
+try { loadBudgetData(); } catch(e) { console.warn('Budget load failed:', e); }
+
+// Export current state as downloadable HTML
+function exportHTML() {
+  // 예산 데이터를 HTML에 포함시켜서 공유해도 데이터 유지
+  const budgetJson = JSON.stringify(budgetData);
+  let html = '<!DOCTYPE html>' + document.documentElement.outerHTML;
+  const inject = '<scr'+'ipt>try{localStorage.setItem(\''+BUDGET_KEY+'\','+JSON.stringify(budgetJson)+')}catch(e){}</'+'script>';
+  const closeIdx = html.lastIndexOf('<\/body>');
+  if (closeIdx !== -1) { html = html.slice(0, closeIdx) + inject + html.slice(closeIdx); }
+  const blob = new Blob([html], {type: 'text/html;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = '연서귀화_유부여름방학_상하이.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+// Hotel pick
+function pickHotel(el) {
+  document.querySelectorAll('.hotel-card').forEach(c => c.classList.remove('picked'));
+  el.classList.add('picked');
+}
+
+// Edit modal
+let editCardEl = null;
+function openEdit(id) {
+  const card = document.querySelector(`.act-card[data-id="${id}"]`);
+  if (!card) return;
+  editCardEl = card;
+  document.getElementById('edit-act-id').value = id;
+  document.getElementById('edit-time').value = card.querySelector('.act-time')?.textContent.trim() || '';
+  document.getElementById('edit-title').value = card.querySelector('.act-title')?.textContent.trim() || '';
+  document.getElementById('edit-desc').value = card.querySelector('.act-desc')?.textContent.trim() || '';
+  const tip = card.querySelector('.act-tip');
+  document.getElementById('edit-tip').value = tip ? tip.textContent.trim() : '';
+  document.getElementById('edit-modal-overlay').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('edit-modal-overlay').classList.remove('open');
+  editCardEl = null;
+}
+
+function saveEdit() {
+  if (!editCardEl) return;
+  const time = document.getElementById('edit-time').value;
+  const title = document.getElementById('edit-title').value;
+  const desc = document.getElementById('edit-desc').value;
+  const tip = document.getElementById('edit-tip').value;
+  if (editCardEl.querySelector('.act-time')) editCardEl.querySelector('.act-time').textContent = time;
+  if (editCardEl.querySelector('.act-title')) editCardEl.querySelector('.act-title').textContent = title;
+  if (editCardEl.querySelector('.act-desc')) editCardEl.querySelector('.act-desc').textContent = desc;
+  const tipEl = editCardEl.querySelector('.act-tip');
+  if (tip) {
+    if (tipEl) { tipEl.textContent = tip; }
+    else {
+      const newTip = document.createElement('div');
+      newTip.className = 'act-tip';
+      newTip.textContent = tip;
+      editCardEl.querySelector('.act-body').insertBefore(newTip, editCardEl.querySelector('.act-actions'));
+    }
+  } else if (tipEl) { tipEl.remove(); }
+  closeModal();
+}
+
+// Add modal
+let addDayId = '';
+let addCounter = 100;
+
+function openAdd(dayId) {
+  addDayId = dayId;
+  document.getElementById('add-day-id').value = dayId;
+  ['add-time','add-title','add-label','add-desc','add-tip'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('add-modal-overlay').classList.add('open');
+}
+
+function closeAddModal() {
+  document.getElementById('add-modal-overlay').classList.remove('open');
+}
+
+function saveAdd() {
+  const time = document.getElementById('add-time').value || '';
+  const title = document.getElementById('add-title').value || '새 일정';
+  const label = document.getElementById('add-label').value || '';
+  const desc = document.getElementById('add-desc').value || '';
+  const tip = document.getElementById('add-tip').value || '';
+  const dayId = document.getElementById('add-day-id').value;
+  const timelineId = `timeline-${dayId}`;
+  const timeline = document.getElementById(timelineId);
+  if (!timeline) return;
+
+  addCounter++;
+  const newId = `custom-${addCounter}`;
+  const tipHtml = tip ? `<div class="act-tip">${tip}</div>` : '';
+  const labelHtml = label ? `<span class="act-label">${label}</span>` : '';
+
+  const html = `
+    <div class="act-card" data-id="${newId}">
+      <div class="act-time-col">
+        <div class="act-dot"></div>
+        <div class="act-time">${time}</div>
+      </div>
+      <div class="act-body">
+        <div class="act-top">
+          <div class="act-icon-title">
+            <span class="act-title">${title}</span>${labelHtml}
+          </div>
+        </div>
+        <div class="act-desc">${desc}</div>
+        ${tipHtml}
+        <div class="act-actions">
+          <button class="btn-edit" onclick="openEdit('${newId}')">✏️ 수정</button>
+          <button class="btn-del" onclick="deleteAct('${newId}')">🗑</button>
+        </div>
+      </div>
+    </div>`;
+
+  timeline.insertAdjacentHTML('beforeend', html);
+  closeAddModal();
+}
+
+// Delete
+function deleteAct(id) {
+  if (!confirm('이 일정을 삭제할까요?')) return;
+  const card = document.querySelector(`.act-card[data-id="${id}"]`);
+  if (card) card.remove();
+}
+
+// Close modal on overlay click
+document.getElementById('edit-modal-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+document.getElementById('add-modal-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeAddModal();
+});
+</script>
+</body>
+</html>
