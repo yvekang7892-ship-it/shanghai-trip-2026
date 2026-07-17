@@ -2240,6 +2240,7 @@ function exportHTML() {
       + setLS(CLKEY, loadChecklist())
       + setLS(ACT_LOC_KEY, getLocStore())
       + setLS(DAYHDR_KEY, loadDayHdr())
+      + setLS(TL_KEY, getTimelines())
       + setLS(HOTEL_KEY, hotelCand)
       + setLS(FLIGHT_KEY, flightCand)
       + setLS(CONFIRM_KEY, getConfirm())
@@ -2322,6 +2323,7 @@ function saveEdit() {
       editCardEl.querySelector('.act-body').insertBefore(newTip, editCardEl.querySelector('.act-actions'));
     }
   } else if (tipEl) { tipEl.remove(); }
+  saveTimelines();
   closeModal();
 }
 
@@ -2382,6 +2384,7 @@ function saveAdd() {
   const newCard = timeline.querySelector(`.act-card[data-id="${newId}"]`);
   if (newCard) { renderLocRow(newCard); rebuildMapButtons(newCard); addMoveButtons(newCard); addChecklistUI(newCard); }
   refreshMoveButtons(timeline);
+  saveTimelines();
   closeAddModal();
 }
 
@@ -2389,7 +2392,7 @@ function saveAdd() {
 function deleteAct(id) {
   if (!confirm('이 일정을 삭제할까요?')) return;
   const card = document.querySelector(`.act-card[data-id="${id}"]`);
-  if (card) { const tl = card.parentNode; card.remove(); refreshMoveButtons(tl); }
+  if (card) { const tl = card.parentNode; card.remove(); refreshMoveButtons(tl); saveTimelines(); }
 }
 
 // Move up / down
@@ -2405,6 +2408,7 @@ function moveAct(id, dir) {
     if (next && next.classList.contains('act-card')) tl.insertBefore(next, card);
   }
   refreshMoveButtons(tl);
+  saveTimelines();
 }
 
 // Inject up/down buttons into a card's action bar
@@ -2989,6 +2993,34 @@ function initDayHdr(){
   });
 }
 document.addEventListener('DOMContentLoaded', initDayHdr);
+
+
+/* ============ 일정(타임라인) 편집 저장 ============ */
+var TL_KEY='shanghai_timeline_2026';
+function saveTimelines(){
+  var o={};
+  ['day1','day2','day3'].forEach(function(d){
+    var tl=document.getElementById('timeline-'+d); if(!tl) return;
+    var cl=tl.cloneNode(true);
+    cl.querySelectorAll('.act-check').forEach(function(x){x.remove();});
+    cl.querySelectorAll('.act-loc').forEach(function(x){x.remove();});
+    o[d]=cl.innerHTML;
+  });
+  try{ localStorage.setItem(TL_KEY, JSON.stringify(o)); }catch(e){}
+}
+function getTimelines(){ try{ return JSON.parse(localStorage.getItem(TL_KEY))||{}; }catch(e){ return {}; } }
+function restoreTimelines(){
+  var o=getTimelines(); var any=false;
+  ['day1','day2','day3'].forEach(function(d){
+    var tl=document.getElementById('timeline-'+d);
+    if(tl && o[d]){ tl.innerHTML=o[d]; any=true; }
+  });
+  if(!any) return;
+  document.querySelectorAll('.act-card').forEach(function(c){ renderLocRow(c); rebuildMapButtons(c); addMoveButtons(c); });
+  document.querySelectorAll('.timeline').forEach(refreshMoveButtons);
+  initActPrep();
+}
+document.addEventListener('DOMContentLoaded', restoreTimelines);
 
 </script>
 </body>
