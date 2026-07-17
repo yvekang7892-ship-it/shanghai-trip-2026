@@ -525,6 +525,12 @@
   .dir-links a{ color:#2980b9; text-decoration:none; font-weight:600; }
   .dir-count{ font-size:0.74rem; color:var(--gray); margin-bottom:10px; }
 
+  /* 드래그 정렬 */
+  .act-body { position:relative; }
+  .drag-handle { position:absolute; top:10px; right:12px; color:#ccc; font-size:1.05rem; cursor:grab; user-select:none; padding:2px 4px; }
+  .drag-handle:hover { color:var(--rose); }
+  .act-card.dragging { opacity:0.45; }
+
   /* ── SCROLL BAR ── */
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-thumb { background: #ddd; border-radius: 3px; }
@@ -2382,7 +2388,7 @@ function saveAdd() {
 
   timeline.insertAdjacentHTML('beforeend', html);
   const newCard = timeline.querySelector(`.act-card[data-id="${newId}"]`);
-  if (newCard) { renderLocRow(newCard); rebuildMapButtons(newCard); addMoveButtons(newCard); addChecklistUI(newCard); }
+  if (newCard) { renderLocRow(newCard); rebuildMapButtons(newCard); addMoveButtons(newCard); addChecklistUI(newCard); enableDrag(newCard); }
   refreshMoveButtons(timeline);
   saveTimelines();
   closeAddModal();
@@ -2519,7 +2525,7 @@ function addMapButtons(card){ rebuildMapButtons(card); }
 function addLocInfo(card){ renderLocRow(card); }
 
 function initMoveButtons() {
-  document.querySelectorAll('.act-card').forEach(c => { renderLocRow(c); rebuildMapButtons(c); addMoveButtons(c); });
+  document.querySelectorAll('.act-card').forEach(c => { renderLocRow(c); rebuildMapButtons(c); addMoveButtons(c); enableDrag(c); });
   document.querySelectorAll('.timeline').forEach(refreshMoveButtons);
 }
 document.addEventListener('DOMContentLoaded', initMoveButtons);
@@ -2722,12 +2728,14 @@ function syncFilterButtons(){
 var DAY_COLORS={1:'#3b82f6',2:'#e8637a',3:'#10b981'};
 var DAY_ROUTES={
  1:[
+  {id:'d1-2',name:'호텔 체크인 (어코브 UrCove)',lat:31.2335,lng:121.4900,cn:'上海外滩逸扉酒店'},
   {id:'d1-3',name:'신천지',lat:31.2205,lng:121.4757,cn:'新天地'},
   {id:'d1-4',name:'티엔쯔팡',lat:31.2110,lng:121.4690,cn:'田子坊'},
   {id:'d1-5',name:'저녁 (상하이 가정식)',lat:31.2360,lng:121.4875,cn:'老吉士'},
   {id:'d1-6',name:'외탄 야경',lat:31.2397,lng:121.4900,cn:'外滩'}
  ],
  2:[
+  {id:'d2-1',name:'호텔 조식 (어코브)',lat:31.2335,lng:121.4900,cn:'上海外滩逸扉酒店'},
   {id:'d2-2',name:'안푸로 카페',lat:31.2130,lng:121.4460,cn:'安福路'},
   {id:'d2-3',name:'우캉로',lat:31.2100,lng:121.4356,cn:'武康大楼'},
   {id:'d2-4',name:'점심 소룡포',lat:31.2110,lng:121.4692,cn:'南翔馒头店'},
@@ -2736,6 +2744,7 @@ var DAY_ROUTES={
   {id:'d2-7',name:'루프탑 바 (외탄)',lat:31.2397,lng:121.4900,cn:'外滩'}
  ],
  3:[
+  {id:'d3-1',name:'호텔 체크아웃 (어코브)',lat:31.2335,lng:121.4900,cn:'上海外滩逸扉酒店'},
   {id:'d3-2',name:'예원 + 성황묘',lat:31.2270,lng:121.4920,cn:'豫园'},
   {id:'d3-3',name:'남상만두점',lat:31.2272,lng:121.4906,cn:'南翔馒头店'},
   {id:'d3-4',name:'남경동로',lat:31.2360,lng:121.4830,cn:'南京东路'}
@@ -3016,11 +3025,56 @@ function restoreTimelines(){
     if(tl && o[d]){ tl.innerHTML=o[d]; any=true; }
   });
   if(!any) return;
-  document.querySelectorAll('.act-card').forEach(function(c){ renderLocRow(c); rebuildMapButtons(c); addMoveButtons(c); });
+  document.querySelectorAll('.act-card').forEach(function(c){ renderLocRow(c); rebuildMapButtons(c); addMoveButtons(c); enableDrag(c); });
   document.querySelectorAll('.timeline').forEach(refreshMoveButtons);
   initActPrep();
 }
 document.addEventListener('DOMContentLoaded', restoreTimelines);
+
+
+/* ============ 드래그로 일정 순서 변경 ============ */
+var DRAG_CARD=null;
+function enableDrag(card){
+  var body=card.querySelector('.act-body'); if(!body) return;
+  var handle=card.querySelector('.drag-handle');
+  if(!handle){ handle=document.createElement('div'); handle.className='drag-handle'; handle.textContent='⠿'; handle.title='끌어서 순서 변경'; body.appendChild(handle); }
+  if(card._dragInit) return; card._dragInit=1;
+  handle.addEventListener('mousedown',function(){ card.setAttribute('draggable','true'); });
+  card.addEventListener('dragstart',function(e){
+    DRAG_CARD=card; card.classList.add('dragging');
+    e.dataTransfer.effectAllowed='move';
+    try{ e.dataTransfer.setData('text/plain',''); }catch(err){}
+  });
+  card.addEventListener('dragend',function(){
+    card.removeAttribute('draggable'); card.classList.remove('dragging'); DRAG_CARD=null;
+    document.querySelectorAll('.timeline').forEach(refreshMoveButtons);
+    saveTimelines();
+  });
+}
+function getDragAfter(tl,y){
+  var els=Array.prototype.slice.call(tl.querySelectorAll('.act-card:not(.dragging)'));
+  var closest=null, best=-Infinity;
+  els.forEach(function(el){
+    var box=el.getBoundingClientRect();
+    var off=y-box.top-box.height/2;
+    if(off<0 && off>best){ best=off; closest=el; }
+  });
+  return closest;
+}
+function initDnD(){
+  document.querySelectorAll('.timeline').forEach(function(tl){
+    if(tl._dnd) return; tl._dnd=1;
+    tl.addEventListener('dragover',function(e){
+      if(!DRAG_CARD || DRAG_CARD.parentNode!==tl) return;
+      e.preventDefault();
+      var after=getDragAfter(tl,e.clientY);
+      if(after==null) tl.appendChild(DRAG_CARD);
+      else if(after!==DRAG_CARD) tl.insertBefore(DRAG_CARD, after);
+    });
+    tl.addEventListener('drop',function(e){ e.preventDefault(); });
+  });
+}
+document.addEventListener('DOMContentLoaded', initDnD);
 
 </script>
 </body>
