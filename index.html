@@ -2483,8 +2483,10 @@ function renderLocRow(card){
     if(loc.cn||loc.addr){ span.innerHTML='🔎 고덕 검색어 '+(loc.cn?('<b>'+esc(loc.cn)+'</b>'):'')+(loc.addr?(' · 📍 '+esc(loc.addr)):''); }
     else { span.innerHTML='<span style="color:var(--gray)">📍 고덕 검색어·주소 추가</span>'; }
     div.appendChild(span);
-    var ed=document.createElement('button'); ed.className='cedit'; ed.textContent='✏️'; ed.title='위치/검색어 수정'; ed.addEventListener('click',function(){ LOC_EDIT=id; renderLocRow(card); });
+    var ed=document.createElement('button'); ed.className='cedit'; ed.textContent='✏️'; ed.title='위치/검색어 수정';
     div.appendChild(ed);
+    div.style.cursor='pointer'; div.title='클릭해서 고덕 검색어·주소 입력';
+    div.addEventListener('click',function(e){ if(e.target.closest('a')) return; LOC_EDIT=id; renderLocRow(card); });
   }
   var desc=body.querySelector('.act-desc');
   if(desc){ if(desc.nextSibling) body.insertBefore(div, desc.nextSibling); else body.appendChild(div); }
