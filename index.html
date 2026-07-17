@@ -664,9 +664,9 @@
 <div class="section" id="day1">
   <div class="day-header">
     <div>
-      <div class="day-badge">Day 1 · 7월 24일 목</div>
-      <div class="day-title">도착 & 첫 탐험 🌆</div>
-      <div class="day-desc">신천지 · 티엔쯔팡 · 외탄 야경</div>
+      <div class="day-badge" contenteditable="true" spellcheck="false" data-dh="badge1">Day 1 · 7월 24일 목</div>
+      <div class="day-title" contenteditable="true" spellcheck="false" data-dh="title1">도착 & 첫 탐험 🌆</div>
+      <div class="day-desc" contenteditable="true" spellcheck="false" data-dh="desc1">신천지 · 티엔쯔팡 · 외탄 야경</div>
     </div>
   </div>
   <div class="timeline" id="timeline-day1">
@@ -821,9 +821,9 @@
 <div class="section" id="day2">
   <div class="day-header">
     <div>
-      <div class="day-badge">Day 2 · 7월 25일 금</div>
-      <div class="day-title">프렌치 콘세션 완전 정복 🌿</div>
-      <div class="day-desc">안푸로 카페 · 우캉로 · 상생신소 · 정안사</div>
+      <div class="day-badge" contenteditable="true" spellcheck="false" data-dh="badge2">Day 2 · 7월 25일 금</div>
+      <div class="day-title" contenteditable="true" spellcheck="false" data-dh="title2">프렌치 콘세션 완전 정복 🌿</div>
+      <div class="day-desc" contenteditable="true" spellcheck="false" data-dh="desc2">안푸로 카페 · 우캉로 · 상생신소 · 정안사</div>
     </div>
   </div>
   <div class="timeline" id="timeline-day2">
@@ -1002,9 +1002,9 @@
 <div class="section" id="day3">
   <div class="day-header">
     <div>
-      <div class="day-badge">Day 3 · 7월 26일 토</div>
-      <div class="day-title">올드 상하이 & 귀국 🏯</div>
-      <div class="day-desc">예원 · 남경동로 쇼핑 · 공항</div>
+      <div class="day-badge" contenteditable="true" spellcheck="false" data-dh="badge3">Day 3 · 7월 26일 토</div>
+      <div class="day-title" contenteditable="true" spellcheck="false" data-dh="title3">올드 상하이 & 귀국 🏯</div>
+      <div class="day-desc" contenteditable="true" spellcheck="false" data-dh="desc3">예원 · 남경동로 쇼핑 · 공항</div>
     </div>
   </div>
   <div class="timeline" id="timeline-day3">
@@ -2239,6 +2239,7 @@ function exportHTML() {
       + setLS(CHECK_KEY, loadCheckState())
       + setLS(CLKEY, loadChecklist())
       + setLS(ACT_LOC_KEY, getLocStore())
+      + setLS(DAYHDR_KEY, loadDayHdr())
       + setLS(HOTEL_KEY, hotelCand)
       + setLS(FLIGHT_KEY, flightCand)
       + setLS(CONFIRM_KEY, getConfirm())
@@ -2971,6 +2972,23 @@ function renderDir(){
 }
 function setDirCat(cat,btn){ DIR_CAT=cat; var fs=document.querySelectorAll('#dir-filters .mf'); for(var i=0;i<fs.length;i++) fs[i].classList.remove('active'); if(btn) btn.classList.add('active'); renderDir(); }
 document.addEventListener('DOMContentLoaded', renderDir);
+
+
+/* ============ Day 헤더 편집 ============ */
+var DAYHDR_KEY='shanghai_dayhdr_2026';
+function loadDayHdr(){ try{ return JSON.parse(localStorage.getItem(DAYHDR_KEY))||{}; }catch(e){ return {}; } }
+function initDayHdr(){
+  var st=loadDayHdr();
+  document.querySelectorAll('[data-dh]').forEach(function(el){
+    var k=el.getAttribute('data-dh');
+    if(st[k]) el.textContent=st[k];
+    if(!el._dh){ el._dh=1; el.addEventListener('blur',function(){
+      var o=loadDayHdr(); o[k]=el.textContent.trim();
+      try{ localStorage.setItem(DAYHDR_KEY, JSON.stringify(o)); }catch(e){}
+    }); }
+  });
+}
+document.addEventListener('DOMContentLoaded', initDayHdr);
 
 </script>
 </body>
