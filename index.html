@@ -548,7 +548,6 @@
 
   /* 모바일/PWA 최적화 */
   html, body { overflow-x:hidden; -webkit-text-size-adjust:100%; }
-  body { overscroll-behavior-y:none; }
   .tabs-wrap { padding-top:env(safe-area-inset-top,0px); }
   .map-toggle-btn { bottom:calc(150px + env(safe-area-inset-bottom,0px)); }
   .export-bar { bottom:calc(14px + env(safe-area-inset-bottom,0px)); }
@@ -2940,7 +2939,7 @@ function initMainMap(){
   renderMap();
   setTimeout(function(){ MAP.invalidateSize(); },250);
 }
-document.addEventListener('DOMContentLoaded', initMainMap);
+/* 지도는 '지도 보기'를 눌러 열 때 생성(지연 로딩) — 스크롤 간섭 방지 */
 
 
 /* ============ 일정별 준비물 체크리스트 ============ */
@@ -3193,12 +3192,13 @@ document.addEventListener('DOMContentLoaded', initDnD);
 function openMap(){
   var pn=document.getElementById('map-panel'), bd=document.getElementById('map-backdrop');
   if(pn) pn.classList.add('open'); if(bd) bd.classList.add('open');
+  if(!MAP){ try{ initMainMap(); }catch(e){} }
   setTimeout(function(){
     if(MAP){ MAP.invalidateSize();
       var act=document.querySelector('.section.active');
-      if(act&&/^day[123]$/.test(act.id)) showDayRoute(parseInt(act.id.slice(3),10));
+      if(act&&/^day[123]$/.test(act.id)) showDayRoute(parseInt(act.id.slice(3),10)); else renderMap();
     }
-  },300);
+  },320);
 }
 function closeMap(){
   var pn=document.getElementById('map-panel'), bd=document.getElementById('map-backdrop');
