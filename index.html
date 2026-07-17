@@ -647,6 +647,15 @@
   .map-search input{ flex:1; min-width:130px; border:1px solid var(--line,#e8eaf1); border-radius:8px; padding:8px 10px; font-size:0.85rem; font-family:inherit; }
   .map-search select{ border:1px solid var(--line,#e8eaf1); border-radius:8px; padding:6px; font-size:0.82rem; font-family:inherit; }
   .map-search button{ background:var(--cobalt,#1e50c8); color:#fff; border:none; border-radius:8px; padding:8px 12px; font-weight:700; font-size:0.82rem; cursor:pointer; white-space:nowrap; }
+  .act-card.editing .act-top, .act-card.editing .act-desc, .act-card.editing .act-loc, .act-card.editing .act-tip, .act-card.editing .act-check, .act-card.editing .act-actions, .act-card.editing .drag-handle{ display:none !important; }
+  .act-editform{ display:flex; flex-direction:column; gap:3px; }
+  .act-editform label{ font-size:0.72rem; color:var(--muted,#7b8494); font-weight:600; margin-top:5px; }
+  .act-editform input, .act-editform select, .act-editform textarea{ border:1px solid var(--line,#e8eaf1); border-radius:8px; padding:8px 10px; font-size:0.88rem; font-family:inherit; width:100%; box-sizing:border-box; }
+  .act-editform .ef-row2{ display:flex; gap:8px; }
+  .act-editform .ef-row2>div{ flex:1; min-width:0; }
+  .act-editform .ef-btns{ display:flex; gap:6px; margin-top:10px; }
+  .act-editform .ef-save{ background:var(--cobalt,#1e50c8); color:#fff; border:none; border-radius:8px; padding:10px 18px; font-weight:800; cursor:pointer; font-size:0.9rem; }
+  .act-editform .ef-cancel{ background:#eef0f4; color:#333; border:none; border-radius:8px; padding:10px 16px; font-weight:700; cursor:pointer; font-size:0.9rem; }
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -2380,18 +2389,64 @@ function pickHotel(el) {
 
 // Edit modal
 let editCardEl = null;
-function openEdit(id) {
-  const card = document.querySelector(`.act-card[data-id="${id}"]`);
-  if (!card) return;
-  editCardEl = card;
-  document.getElementById('edit-act-id').value = id;
-  document.getElementById('edit-time').value = card.querySelector('.act-time')?.textContent.trim() || '';
-  document.getElementById('edit-title').value = card.querySelector('.act-title')?.textContent.trim() || '';
-  document.getElementById('edit-desc').value = card.querySelector('.act-desc')?.textContent.trim() || '';
-  const tip = card.querySelector('.act-tip');
-  document.getElementById('edit-tip').value = tip ? tip.textContent.trim() : '';
-  setCatSelect('edit-label', card.querySelector('.act-label')?.textContent.trim() || '');
-  document.getElementById('edit-modal-overlay').classList.add('open');
+function setCatSelectEl(sel,val){ if(!sel) return; if(!val){ sel.selectedIndex=sel.options.length-1; return; } var found=[].some.call(sel.options,function(o){return o.value===val||o.textContent===val;}); if(!found){ var o=document.createElement('option'); o.textContent=val; sel.appendChild(o);} sel.value=val; }
+function openEdit(id){
+  var card=document.querySelector('.act-card[data-id="'+id+'"]'); if(!card) return;
+  var body=card.querySelector('.act-body'); if(!body) return;
+  if(body.querySelector('.act-editform')) return;
+  card.classList.add('editing');
+  var g=function(s){ var e=card.querySelector(s); return e?e.textContent.trim():''; };
+  var loc=locFor(id);
+  var curTl=card.closest('.timeline'); var curDay=curTl?curTl.id.replace('timeline-',''):'day1';
+  var labelOpts=(document.getElementById('edit-label')||{}).innerHTML||'<option>이동</option><option>관광</option><option>맛집</option><option>카페</option><option>휴식</option><option>쇼핑</option>';
+  var f=document.createElement('div'); f.className='act-editform';
+  f.innerHTML=''
+    +'<div class="ef-row2"><div><label>시간</label><input class="ef-time"></div><div><label>카테고리(태그)</label><select class="ef-label">'+labelOpts+'</select></div></div>'
+    +'<label>제목</label><input class="ef-title">'
+    +'<label>날짜(Day) — 다른 날로 이동</label><select class="ef-day"><option value="day1">Day 1</option><option value="day2">Day 2</option><option value="day3">Day 3</option></select>'
+    +'<label>🔎 고덕 검색어 (중국어) · 입력하면 지도에 핀 표시</label><input class="ef-cn" placeholder="예: 南京东路">'
+    +'<label>📍 주소 1</label><input class="ef-addr" placeholder="주소">'
+    +'<label>📍 주소 2 (선택·지점 여러 곳)</label><input class="ef-addr2" placeholder="두 번째 주소">'
+    +'<label>메모</label><textarea class="ef-desc" rows="2"></textarea>'
+    +'<label>💡 팁 (선택)</label><input class="ef-tip" placeholder="팁">'
+    +'<div class="ef-btns"><button type="button" class="ef-save">✅ 완료</button><button type="button" class="ef-cancel">취소</button></div>';
+  body.insertBefore(f, body.firstChild);
+  f.querySelector('.ef-time').value=g('.act-time');
+  f.querySelector('.ef-title').value=g('.act-title');
+  setCatSelectEl(f.querySelector('.ef-label'), g('.act-label'));
+  f.querySelector('.ef-day').value=curDay;
+  f.querySelector('.ef-cn').value=loc.cn||'';
+  f.querySelector('.ef-addr').value=loc.addr||'';
+  f.querySelector('.ef-addr2').value=loc.addr2||'';
+  f.querySelector('.ef-desc').value=g('.act-desc');
+  f.querySelector('.ef-tip').value=g('.act-tip');
+  f.querySelector('.ef-save').addEventListener('click',function(){ saveEditInline(id); });
+  f.querySelector('.ef-cancel').addEventListener('click',function(){ cancelEditInline(id); });
+  f.querySelector('.ef-time').focus();
+}
+function cancelEditInline(id){ var card=document.querySelector('.act-card[data-id="'+id+'"]'); if(!card) return; var f=card.querySelector('.act-editform'); if(f) f.remove(); card.classList.remove('editing'); }
+function saveEditInline(id){
+  var card=document.querySelector('.act-card[data-id="'+id+'"]'); if(!card) return;
+  var f=card.querySelector('.act-editform'); if(!f) return;
+  var time=f.querySelector('.ef-time').value, title=f.querySelector('.ef-title').value, label=f.querySelector('.ef-label').value;
+  var cn=f.querySelector('.ef-cn').value, addr=f.querySelector('.ef-addr').value, addr2=f.querySelector('.ef-addr2').value;
+  var desc=f.querySelector('.ef-desc').value, tip=f.querySelector('.ef-tip').value, tgtDay=f.querySelector('.ef-day').value;
+  var curTl=card.closest('.timeline'); var curDay=curTl?curTl.id.replace('timeline-',''):'';
+  if(card.querySelector('.act-time')) card.querySelector('.act-time').textContent=time;
+  if(card.querySelector('.act-title')) card.querySelector('.act-title').textContent=title;
+  if(card.querySelector('.act-desc')) card.querySelector('.act-desc').textContent=desc;
+  var labelEl=card.querySelector('.act-label');
+  if(label){ if(!labelEl){ labelEl=document.createElement('span'); labelEl.className='act-label'; var it=card.querySelector('.act-icon-title'); if(it) it.appendChild(labelEl);} labelEl.textContent=label; }
+  else if(labelEl){ labelEl.remove(); }
+  var tipEl=card.querySelector('.act-tip');
+  if(tip){ if(tipEl){ tipEl.textContent=tip; } else { var nt=document.createElement('div'); nt.className='act-tip'; nt.textContent=tip; var d=card.querySelector('.act-desc'); if(d&&d.nextSibling) card.querySelector('.act-body').insertBefore(nt,d.nextSibling); else card.querySelector('.act-body').appendChild(nt);} }
+  else if(tipEl){ tipEl.remove(); }
+  f.remove(); card.classList.remove('editing');
+  var moved=false;
+  if(tgtDay && tgtDay!==curDay){ var tgt=document.getElementById('timeline-'+tgtDay); if(tgt){ tgt.appendChild(card); if(curTl) refreshMoveButtons(curTl); refreshMoveButtons(tgt); moved=true; } }
+  saveTimelines();
+  saveLoc(id,cn,addr,addr2);
+  if(moved){ alert('이 일정을 '+tgtDay.replace('day','Day ')+'(으)로 옮겼어요!'); }
 }
 
 // 카테고리 select에 현재값 반영 (목록에 없으면 추가)
@@ -2601,14 +2656,10 @@ function renderLocRow(card){
     var cc=document.createElement('button'); cc.className='pe-cancel'; cc.textContent='취소'; cc.addEventListener('click',function(){ LOC_EDIT=null; renderLocRow(card); });
     div.appendChild(ci); div.appendChild(ai); div.appendChild(ai2); div.appendChild(sv); div.appendChild(cc);
   } else {
+    if(!(loc.cn||loc.addr||loc.addr2)) return;
     var span=document.createElement('span');
-    if(loc.cn||loc.addr||loc.addr2){ span.innerHTML='🔎 고덕 검색어 '+(loc.cn?('<b>'+esc(loc.cn)+'</b>'):'')+(loc.addr?(' · 📍 '+esc(loc.addr)):'')+(loc.addr2?(' · 📍 '+esc(loc.addr2)):''); }
-    else { span.innerHTML='<span style="color:var(--gray)">📍 고덕 검색어·주소 추가</span>'; }
+    span.innerHTML='🔎 고덕 검색어 '+(loc.cn?('<b>'+esc(loc.cn)+'</b>'):'')+(loc.addr?(' · 📍 '+esc(loc.addr)):'')+(loc.addr2?(' · 📍 '+esc(loc.addr2)):'');
     div.appendChild(span);
-    var ed=document.createElement('button'); ed.className='cedit'; ed.textContent='✏️'; ed.title='위치/검색어 수정';
-    div.appendChild(ed);
-    div.style.cursor='pointer'; div.title='클릭해서 고덕 검색어·주소 입력';
-    div.addEventListener('click',function(e){ if(e.target.closest('a')) return; LOC_EDIT=id; renderLocRow(card); });
   }
   var desc=body.querySelector('.act-desc');
   if(desc){ if(desc.nextSibling) body.insertBefore(div, desc.nextSibling); else body.appendChild(div); }
@@ -2643,7 +2694,6 @@ function rebuildMapButtons(card){
   var kw=loc.cn||loc.addr||title; if(!kw) return;
   var q=encodeURIComponent(loc.cn||loc.addr||(title+' 상하이'));
   if(loc.amap){ var am=document.createElement('a'); am.className='btn-map-amap'; am.target='_blank'; am.setAttribute('href',loc.amap); am.textContent='📍 고덕'; actions.appendChild(am); }
-  var g=document.createElement('a'); g.className='btn-map'; g.target='_blank'; g.setAttribute('href','https://www.google.com/maps/search/?api=1&query='+q); g.textContent='🗺️ 구글맵'; actions.appendChild(g);
   var ap=document.createElement('a'); ap.className='btn-map-apple'; ap.target='_blank'; ap.setAttribute('href','https://maps.apple.com/?q='+q); ap.textContent=' 애플지도'; actions.appendChild(ap);
 }
 function addMapButtons(card){ rebuildMapButtons(card); }
@@ -2918,6 +2968,18 @@ function bindDayCardHover(day){
     card.style.cursor='pointer';
   });
 }
+function ensureDayGeocoded(day){
+  var tl=document.getElementById('timeline-day'+day); if(!tl) return;
+  var store=getLocStore(); var cards=tl.querySelectorAll('.act-card'); var delay=0;
+  for(var i=0;i<cards.length;i++){
+    var id=cards[i].getAttribute('data-id'); var st=store[id]||{}; var loc=locFor(id);
+    var hasCoord=(typeof st.lat==='number' && typeof st.lng==='number');
+    if(!hasCoord && (loc.cn||loc.addr)){
+      var q=(loc.addr||loc.cn); if(q.indexOf('上海')<0&&q.indexOf('상하이')<0) q=q+' 上海';
+      delay+=700; (function(_id,_q,_dl){ setTimeout(function(){ geocodeLoc(_id,_q); },_dl); })(id,q,delay);
+    }
+  }
+}
 function computeDayRoute(day){
   var tl=document.getElementById('timeline-day'+day); var out=[]; if(!tl) return out;
   var store=getLocStore(); var cards=tl.querySelectorAll('.act-card');
@@ -2962,9 +3024,9 @@ function showDayRoute(day){
 }
 function updateMapForTab(id){
   if(!MAP) return;
-  if(id==='day1') showDayRoute(1);
-  else if(id==='day2') showDayRoute(2);
-  else if(id==='day3') showDayRoute(3);
+  if(id==='day1'){ showDayRoute(1); ensureDayGeocoded(1); }
+  else if(id==='day2'){ showDayRoute(2); ensureDayGeocoded(2); }
+  else if(id==='day3'){ showDayRoute(3); ensureDayGeocoded(3); }
   else { if(ROUTE_LAYER) ROUTE_LAYER.clearLayers(); renderMap(); }
   setTimeout(function(){ if(MAP) MAP.invalidateSize(); },120);
 }
@@ -3065,9 +3127,8 @@ function renderActPrep(id){
       ppl.appendChild(pl);
     });
     row.appendChild(ppl);
-    const ed=document.createElement('button'); ed.className='cedit'; ed.textContent='✏️'; ed.title='수정'; ed.addEventListener('click',function(){ editPrep(id,i); });
     const del=document.createElement('button'); del.className='cdel'; del.textContent='🗑'; del.addEventListener('click',function(){ delPrep(id,i); });
-    row.appendChild(ed); row.appendChild(del);
+    row.appendChild(del);
     list.appendChild(row);
   });
 }
@@ -3257,7 +3318,7 @@ function openMap(){
   setTimeout(function(){
     if(MAP){ MAP.invalidateSize();
       var act=document.querySelector('.section.active');
-      if(act&&/^day[123]$/.test(act.id)) showDayRoute(parseInt(act.id.slice(3),10)); else renderMap();
+      if(act&&/^day[123]$/.test(act.id)){ var _d=parseInt(act.id.slice(3),10); showDayRoute(_d); ensureDayGeocoded(_d); } else renderMap();
     }
   },320);
 }
