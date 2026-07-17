@@ -599,6 +599,32 @@
     .curr-preset { padding: 7px 12px; font-size: 0.78rem; }
     .act-actions { flex-wrap: wrap; }
   }
+  /* ========== UX 리프레시 (미니멀·코발트) ========== */
+  :root{ --ink:#20242e; --muted:#7b8494; --line:#e8eaf1; --cobalt:#1e50c8; }
+  body{ background:#f5f6fa; color:var(--ink); }
+  .section{ padding-top:16px; }
+  /* 카드: 플랫 + 얇은 테두리 + 부드러운 그림자 */
+  .info-card,.expense-form,.expense-list,.cat-summary,.currency-box,.check-group,.check-progress-wrap,.act-body,.pcard,.dir-card,.hotel-card,.trend-card,.phrase-card,.cand-card{
+    box-shadow:0 1px 2px rgba(25,35,70,.05) !important; border:1px solid var(--line) !important; border-radius:14px; }
+  .act-body{ padding:16px 16px; }
+  /* 섹션 제목: 얇은 코발트 바, 부제는 옅게 */
+  .info-section-title{ font-size:1.02rem; font-weight:800; color:var(--ink); margin:26px 0 12px; padding-left:11px; border-left:4px solid var(--cobalt); }
+  .info-section-title span{ color:var(--muted); font-weight:500; }
+  /* 화려한 배너 → 차분한 코발트 계열 */
+  .budget-hero{ background:linear-gradient(135deg,#1e50c8,#4a78e6) !important; }
+  #prep > div:first-child, #trend > div:first-child{ background:linear-gradient(135deg,#1e50c8,#3f6fd6) !important; }
+  .wx-card{ background:linear-gradient(135deg,#4571d4,#8fb0f0) !important; }
+  .rate-card{ background:linear-gradient(135deg,#1e50c8,#5b82e8) !important; }
+  .curr-rate-display{ background:linear-gradient(135deg,#1e50c8,#5b82e8) !important; }
+  /* 배지/칩 톤다운 */
+  .act-label{ background:#eef3ff !important; color:var(--cobalt) !important; box-shadow:none; }
+  .cc-grade{ background:var(--cobalt) !important; }
+  .hero-tag{ background:rgba(255,255,255,0.16); }
+  /* 탭 정돈 */
+  .major.active{ box-shadow:none; }
+  .tabs-wrap{ border-bottom:1px solid var(--line); }
+  /* 확정 정보 카드 초록테두리 → 코발트 톤 (인라인 대응) */
+  #hotel .info-card[style*="27ae60"]{ border:1px solid var(--cobalt) !important; }
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
