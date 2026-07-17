@@ -21,7 +21,7 @@
 
   /* ── HERO ── */
   .hero {
-    position: relative; height: 320px; overflow: hidden;
+    position: relative; height: 190px; overflow: hidden;
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
     display: flex; align-items: center; justify-content: center; flex-direction: column;
   }
@@ -36,9 +36,9 @@
     background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.55) 100%);
   }
   .hero-content { position: relative; text-align: center; color: #fff; padding: 0 20px; }
-  .hero-emoji { font-size: 2.5rem; margin-bottom: 8px; }
-  .hero-title { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.5px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-  .hero-sub { font-size: 1rem; margin-top: 8px; opacity: 0.9; letter-spacing: 1px; }
+  .hero-emoji { font-size: 1.4rem; margin-bottom: 3px; }
+  .hero-title { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.5px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+  .hero-sub { font-size: 0.82rem; margin-top: 4px; opacity: 0.9; letter-spacing: 0.5px; }
   .hero-tags { display: flex; gap: 8px; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
   .hero-tag { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.35);
                color: #fff; border-radius: 20px; padding: 4px 14px; font-size: 0.78rem; backdrop-filter: blur(4px); }
@@ -537,9 +537,10 @@
 
   /* ── MOBILE ── */
   @media (max-width: 520px) {
-    .hero { height: 260px; }
-    .hero-title { font-size: 1.5rem; }
-    .hero-sub { font-size: 0.85rem; }
+    .hero { height: 132px; }
+    .hero-title { font-size: 1.2rem; }
+    .hero-sub { font-size: 0.75rem; }
+    .hero-tags { display:none; }
     .section { padding: 16px 14px 60px; }
     .hotel-grid { grid-template-columns: 1fr; }
     .phrase-grid { grid-template-columns: 1fr; }
@@ -1712,8 +1713,16 @@ function switchTab(id) {
   if (sec) sec.classList.add('active');
   const btn = document.querySelector(`.tab[data-tab="${id}"]`);
   if (btn) btn.classList.add('active');
+  try{ localStorage.setItem('shanghai_lasttab_2026', id); }catch(e){}
   if (typeof updateMapForTab === 'function') updateMapForTab(id);
 }
+document.addEventListener('DOMContentLoaded', function(){
+  try{
+    var lt=localStorage.getItem('shanghai_lasttab_2026'); if(!lt) return;
+    var mj={home:'home',day1:'schedule',day2:'schedule',day3:'schedule',prep:'info',hotel:'info',trend:'info',phrase:'info',currency:'info',budget:'info'};
+    if(mj[lt] && typeof switchMajor==='function'){ switchMajor(mj[lt]); switchTab(lt); }
+  }catch(e){}
+});
 
 function switchMajor(m) {
   document.querySelectorAll('.major').forEach(b => b.classList.toggle('active', b.dataset.major === m));
@@ -2508,6 +2517,20 @@ function saveLoc(id,cn,addr){
   LOC_EDIT=null;
   var card=document.querySelector('.act-card[data-id="'+id+'"]');
   if(card){ renderLocRow(card); rebuildMapButtons(card); }
+  var q=((addr||'').trim()||(cn||'').trim());
+  if(q){ if(q.indexOf('上海')<0 && q.indexOf('상하이')<0) q=q+' 上海'; geocodeLoc(id,q); }
+}
+function geocodeLoc(id, query){
+  try{
+    fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q='+encodeURIComponent(query),{headers:{'Accept':'application/json'}})
+      .then(function(r){return r.json();})
+      .then(function(a){
+        if(a&&a[0]){ var st=getLocStore(); st[id]=st[id]||{}; st[id].lat=parseFloat(a[0].lat); st[id].lng=parseFloat(a[0].lon); saveLocStore(st);
+          var act=document.querySelector('.section.active');
+          if(act&&/^day[123]$/.test(act.id) && typeof showDayRoute==='function'){ showDayRoute(parseInt(act.id.slice(3),10)); }
+        }
+      }).catch(function(){});
+  }catch(e){}
 }
 function rebuildMapButtons(card){
   var actions=card.querySelector('.act-actions'); if(!actions) return;
@@ -2773,9 +2796,23 @@ function bindDayCardHover(day){
     card.style.cursor='pointer';
   });
 }
+function computeDayRoute(day){
+  var tl=document.getElementById('timeline-day'+day); var out=[]; if(!tl) return out;
+  var store=getLocStore(); var cards=tl.querySelectorAll('.act-card');
+  for(var i=0;i<cards.length;i++){
+    var card=cards[i]; var id=card.getAttribute('data-id'); var loc=store[id]||{};
+    var lat=null,lng=null,cn=loc.cn||'';
+    if(typeof loc.lat==='number' && typeof loc.lng==='number'){ lat=loc.lat; lng=loc.lng; }
+    else { var def=(DAY_ROUTES[day]||[]).filter(function(r){return r.id===id;})[0]; if(def){ lat=def.lat; lng=def.lng; if(!cn) cn=def.cn||''; } }
+    if(lat==null||lng==null) continue;
+    var t=card.querySelector('.act-title'); var nm=t?t.textContent.trim():('장소 '+(i+1));
+    out.push({id:id,name:nm,lat:lat,lng:lng,cn:cn});
+  }
+  return out;
+}
 function showDayRoute(day){
   if(!MAP||!MARKER_LAYER) return;
-  var route=DAY_ROUTES[day]||[]; var color=DAY_COLORS[day]||'#e8637a';
+  var route=computeDayRoute(day); var color=DAY_COLORS[day]||'#e8637a';
   MARKER_LAYER.clearLayers(); if(ROUTE_LAYER) ROUTE_LAYER.clearLayers(); VISIBLE=[]; MARKERS=[];
   var pts=[];
   route.forEach(function(s,i){
@@ -2787,9 +2824,19 @@ function showDayRoute(day){
   });
   if(pts.length>1 && ROUTE_LAYER) L.polyline(pts,{color:color,weight:3.5,opacity:0.85,dashArray:'6,9',lineJoin:'round'}).addTo(ROUTE_LAYER);
   var mf=document.getElementById('map-filters'); if(mf) mf.style.display='none';
-  renderDayCards(day,color);
+  var el=document.getElementById('map-cards');
+  if(el){ el.innerHTML='';
+    route.forEach(function(s,i){
+      var c=document.createElement('div'); c.className='pcard';
+      c.innerHTML='<div class="pcard-img" style="background:'+color+'22;color:'+color+';font-weight:800;font-size:1.6rem">'+(i+1)+'</div>'
+        +'<div class="pcard-body"><span class="pcard-cat" style="background:'+color+'">Day '+day+' · '+(i+1)+'번</span>'
+        +'<div class="pcard-name">'+s.name+'</div>'+(s.cn?'<div class="pcard-desc">🔎 '+s.cn+'</div>':'')+'</div>';
+      c.addEventListener('click',function(){ focusPlace(i); });
+      el.appendChild(c);
+    });
+  }
+  route.forEach(function(s,i){ var cc=document.querySelector('.act-card[data-id="'+s.id+'"]'); if(cc){ cc.onmouseenter=function(){ focusPlace(i); }; } });
   if(pts.length){ try{ MAP.fitBounds(pts,{padding:[55,55],maxZoom:15}); }catch(e){} }
-  bindDayCardHover(day);
 }
 function updateMapForTab(id){
   if(!MAP) return;
