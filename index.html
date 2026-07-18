@@ -1951,6 +1951,100 @@ const WHO_KEY = 'shanghai_who_2026';
 const SHEET_API = 'https://script.google.com/macros/s/AKfycbzK5yl6VW1y6l7JLGXA656gey7Ez5i-y3PGgNJrfazbhJPRzSNMTIXJf-C5PfCyzhWq/exec';
 let budgetData = { totalBudget: 0, expenses: [] };
 
+/* ══════════ ☁️ 클라우드 동기화 (전체 데이터 ↔ 구글시트) ══════════ */
+var CLOUD_TS_KEY = 'shanghai_cloud_ts';
+var CLOUD_DIRTY_KEY = 'shanghai_cloud_dirty';
+var CLOUD_SUPPRESS = false;
+var cloudSaveTimer = null;
+var _rawSetLS = localStorage.setItem.bind(localStorage);
+
+function isCloudKey(k){
+  return typeof k === 'string' && k.indexOf('shanghai_') === 0
+    && k !== BUDGET_KEY && k !== WHO_KEY
+    && k !== 'shanghai_seed_ver' && k !== CLOUD_TS_KEY && k !== CLOUD_DIRTY_KEY;
+}
+// localStorage.setItem 가로채서 변경 시 자동으로 클라우드 저장 예약
+(function(){
+  localStorage.setItem = function(k, v){
+    _rawSetLS(k, v);
+    if(!CLOUD_SUPPRESS && isCloudKey(k)) scheduleCloudSave();
+  };
+})();
+function collectCloudState(){
+  var obj = {};
+  for(var i=0;i<localStorage.length;i++){
+    var k = localStorage.key(i);
+    if(isCloudKey(k)) obj[k] = localStorage.getItem(k);
+  }
+  return obj;
+}
+function setCloudStatus(state){
+  var el = document.getElementById('cloud-status');
+  if(!el){
+    if(!document.body) return;
+    el = document.createElement('div');
+    el.id = 'cloud-status';
+    el.style.cssText = 'position:fixed;left:10px;bottom:10px;z-index:99999;font-size:12px;padding:5px 11px;border-radius:14px;background:rgba(255,255,255,.96);box-shadow:0 1px 6px rgba(0,0,0,.18);transition:opacity .4s;pointer-events:none;font-weight:600;';
+    document.body.appendChild(el);
+  }
+  el.style.opacity = '1';
+  if(state==='saving'){ el.textContent='☁️ 저장 중…'; el.style.color='#c49a00'; }
+  else if(state==='saved'){ el.textContent='☁️ 클라우드 저장됨'; el.style.color='#27ae60'; setTimeout(function(){ if(el) el.style.opacity='0'; }, 1800); }
+  else if(state==='off'){ el.textContent='⚠️ 클라우드 미연결 (이 기기에만 저장)'; el.style.color='#e8637a'; setTimeout(function(){ if(el) el.style.opacity='0'; }, 3000); }
+}
+function scheduleCloudSave(){
+  try{ _rawSetLS(CLOUD_DIRTY_KEY, '1'); }catch(e){}
+  clearTimeout(cloudSaveTimer);
+  setCloudStatus('saving');
+  cloudSaveTimer = setTimeout(pushCloudNow, 1500);
+}
+function pushCloudNow(){
+  var ts = Date.now();
+  var body = JSON.stringify({ action:'saveState', ts: ts, state: JSON.stringify(collectCloudState()) });
+  fetch(SHEET_API, { method:'POST', body: body })
+    .then(function(){
+      try{ _rawSetLS(CLOUD_TS_KEY, String(ts)); _rawSetLS(CLOUD_DIRTY_KEY, '0'); }catch(e){}
+      setCloudStatus('saved');
+    })
+    .catch(function(){ setCloudStatus('off'); });
+}
+function applyCloudState(obj){
+  CLOUD_SUPPRESS = true;
+  var changed = false;
+  Object.keys(obj).forEach(function(k){
+    if(isCloudKey(k) && localStorage.getItem(k) !== obj[k]){
+      try{ _rawSetLS(k, obj[k]); changed = true; }catch(e){}
+    }
+  });
+  CLOUD_SUPPRESS = false;
+  return changed;
+}
+function cloudInit(){
+  fetch(SHEET_API + '?state=1&t=' + Date.now(), { cache:'no-store' })
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      var localTs = Number(localStorage.getItem(CLOUD_TS_KEY) || 0);
+      var cloudTs = Number((d && d.ts) || 0);
+      var dirty = localStorage.getItem(CLOUD_DIRTY_KEY) === '1';
+      if(d && d.state && cloudTs > localTs){
+        var obj = null; try{ obj = JSON.parse(d.state); }catch(e){}
+        if(obj){
+          var changed = applyCloudState(obj);
+          try{ _rawSetLS(CLOUD_TS_KEY, String(cloudTs)); }catch(e){}
+          if(changed){ location.reload(); return; }
+        }
+        setCloudStatus('saved');
+      } else if(localTs === 0 || dirty || localTs > cloudTs){
+        pushCloudNow();
+      } else {
+        setCloudStatus('saved');
+      }
+    })
+    .catch(function(){ setCloudStatus('off'); });
+}
+window.addEventListener('load', function(){ setTimeout(cloudInit, 500); });
+/* ══════════ /클라우드 동기화 ══════════ */
+
 function getWho() { return localStorage.getItem(WHO_KEY) || '연서'; }
 function setWho(w) {
   try { localStorage.setItem(WHO_KEY, w); } catch(e) {}
